@@ -5,6 +5,21 @@ SCRIPT_PATH=$(readlink -f $0)
 REPO_PATH=$(dirname $SCRIPT_PATH)
 DATE=$(date +"%Y-%m-%d")
 
+# It will insert/update the dotfiles_dir path variable in .bashrc when this script process the .bashrc symbolic link.
+# so, you don't worry the repository changed the location or naming else name.
+update_dotfiles_path() {
+    # Remove the old dotfiles hook in ~/.bashrc
+    sed -i -f "$REPO_PATH/.bashrc_sed.scr" $REPO_PATH/.bashrc
+
+    cat << EOF >> $REPO_PATH/.bashrc
+# dotfiles hook.
+dotfiles_dir="$REPO_PATH"
+[ -f "\$dotfiles_dir/.bash_profile" ] && source "\$dotfiles_dir/.bash_profile";
+
+unset dotfiles_dir
+EOF
+}
+
 cd "$REPO_PATH";
 
 read -r -p "This script will change the dotfiles(type: file) to symbolic link, Are you sure? (Y/N):N " answer
@@ -39,6 +54,8 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
                     * ) echo "Please answer Y or N, Ignore!"; continue;;
                 esac
             else
+                # Update the dotfiles_dir path in .bashrc
+                [ "${T_Name[$i]}" == ".bashrc" ] && update_dotfiles_path
                 continue
             fi
         fi
@@ -58,5 +75,8 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
         fi
 
         ln -s "$source" "$target"
+
+        # Update the dotfiles_dir path in .bashrc
+        [ "${T_Name[$i]}" == ".bashrc" ] && update_dotfiles_path
     fi
 done

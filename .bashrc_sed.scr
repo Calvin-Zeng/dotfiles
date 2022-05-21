@@ -1,0 +1,13 @@
+/dotfiles hook/ b success
+{
+    b end
+}
+:success
+{
+    N
+    N
+    N
+    N
+    d
+}
+:end

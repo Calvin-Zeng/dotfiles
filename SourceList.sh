@@ -42,7 +42,3 @@ T_Path[12]="$HOME"
 S_Name[13]="terminator_config"
 T_Name[13]="config"
 T_Path[13]="$HOME/.config/terminator"
-
-T_Name[14]="test"
-T_Path[14]="$HOME"
-
