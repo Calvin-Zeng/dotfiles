@@ -10,4 +10,4 @@ esac
 dotfiles_dir="$HOME/dotfiles"
 [ -f "$dotfiles_dir/.bash_profile" ] && source "$dotfiles_dir/.bash_profile";
 
-unset dotfiles_dir
+unset dotfiles_dir color_prompt force_color_prompt
