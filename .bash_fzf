@@ -1,0 +1,56 @@
+# Check the fzf is present.
+[ ! $(command -v fzf) ] && return 1
+
+# Add support for
+#   F2 : Toggle preview windows.
+#   Ctrl + a : Toggle all matched.
+#   Ctrl + o : open selected file in SublimeText.
+#   Ctrl + y : copy path to clipboard.
+#   Ctrl + s : copy selected path to /tmp/tmp_list
+#   Alt + s  : Erase /tmp/tmp_list
+#   f2:execute(bat --color \"always\" {})
+#   ctrl-d:reload(find . -type d),
+#   ctrl-f:reload($FZF_DEFAULT_COMMAND),
+export FZF_DEFAULT_OPTS="--bind='f2:toggle-preview,ctrl-a:toggle-all,ctrl-o:execute([ -d {} ] || subl {+}),ctrl-y:execute-silent(echo {+} | tr \"\n\" \"\0\" | xclip -selection clipboard),ctrl-s:execute-silent(echo {+} | tr \" \" \"\n\" >> /tmp/tmp_list_$(date +"%Y-%m-%d")),alt-s:execute-silent(cat /dev/null > /tmp/tmp_list_$(date +"%Y-%m-%d"))'"
+
+# Improved command
+alias lsof_fzf_ipv4="lsof -Pn -i4 | awk '{printf \"%10s %6s %5s %4s %-20s\n\", \$1, \$2, \$3, \$8, \$9}' | fzf --border --cycle --ansi --header-lines=1"
+alias service_list="cat /etc/services | fzf"
+
+# fzf material
+# --multi --height 40% --reverse --border
+alias _FZF_H40='fzf --cycle --border --ansi --reverse --height 40%'
+alias _FZF_H40_M='fzf --cycle --border --ansi --reverse -m --height 40%'
+alias _FZF_H80='fzf --cycle --border --ansi --reverse --height 80%'
+alias _FZF_H80_M='fzf --cycle --border --ansi --reverse -m --height 80%'
+
+alias previewfile="fzf -m --preview 'bat --terminal-width $((COLUMNS/2-5)) --color \"always\" {} '"
+alias previewdir="fzf -m --preview 'ls --color=\"always\" -lshGg {} '"
+
+previewtree () {
+    cd $(find ./ -type d | fzf -m --ansi --preview " tree -C -L 3 {} ")
+}
+
+# Function
+_FZF_H40_FileList () {
+    cat "$@" | _FZF_H40
+}
+
+_FZF_H40_M_FileList () {
+    cat "$@" | _FZF_H40_M
+}
+
+_FZF_H80_FileList () {
+    cat "$@" | _FZF_H80
+}
+
+_FZF_H80_M_FileList () {
+    cat "$@" | _FZF_H80_M
+}
+
+# Load the fzf custom command.
+for fzf_file in $dotfiles_dir/bash_fzf/.fzf*; do
+    # echo "Loading the $fzf_file"
+    [ -f "$fzf_file" ] && [ -r "$fzf_file" ] && source "$fzf_file";
+done;
+unset fzf_file;

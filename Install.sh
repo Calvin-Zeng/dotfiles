@@ -22,7 +22,7 @@ EOF
 
 cd "$REPO_PATH";
 
-read -r -p "This script will change the dotfiles(type: file) to symbolic link, Are you sure? (Y/N):N " answer
+read -r -p "This script will change the dotfiles(type: file) to symbolic link, Are you sure? (Y/[N]): " answer
 case $answer in
     [Yy]* ) ;;
     *|[Nn]* )
@@ -47,7 +47,7 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
         if [ -L "$target" ]; then
             # Check the path is link to repo.
             if [ "$source" != "$(readlink $target)" ]; then
-                read -r -p "The $target is a symbolic link, but it isn't link to $source, modify? (Y/N):Y " answer
+                read -r -p "The $target is a symbolic link, but it isn't link to $source, modify? ([Y]/N): " answer
                 case $answer in
                     ""|[Yy]* ) rm "$target";;
                     [Nn]* ) continue;;

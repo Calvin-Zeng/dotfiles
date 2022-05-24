@@ -1,0 +1,15 @@
+# Alternate:
+# grep processor /proc/cpuinfo | wc -l
+export CPU_THREAD="$(($(nproc)))"
+export CPU_AES=$(grep -m1 -o aes /proc/cpuinfo)
+export OSBIT=$(getconf LONG_BIT)
+export HDD_INFO=$(lsblk -d -o name,rota | grep '^sd*' | awk '{print($2==1)?$1": HDD":$1": SSD";}')
+export LINUX_AES=$(sort -u /proc/crypto | grep module)
+export OPENSSL_AES=$(openssl engine)
+
+# Alternate:
+# curl ipecho.net/plain
+export WANIP=$(timeout --kill-after=5s 2s dig +short txt ch whoami.cloudflare @1.0.0.1)
+export LANIP=$(ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, ""); print }')
+
+# TOUCHPAD=$(xinput list | grep Touchpad | awk '{print $5}' | sed 's/id\=//g')
