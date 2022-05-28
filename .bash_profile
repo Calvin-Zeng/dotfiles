@@ -26,21 +26,20 @@ shopt -s checkwinsize
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# export PATH="$PATH:/home/${USER}/example/bin/"
-# export CMAKE_ROOT=$HOME/cmake-3.2.2
-
 # Load the shell dotfiles.
-for file in $dotfiles_dir/.{bash_color,git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh,bash_{prompt,aliases,completion,variables,keymap,fzf,other}}; do
-    # echo "Loading the $file"
-    [ -f "$file" ] && [ -r "$file" ] && source "$file";
-done;
-unset file;
-
-# Load the extra function.
-for file in $dotfiles_dir/functions/*; do
+SOURCE_LIST=(\
+    $dotfiles_dir/.bash_color \
+    $dotfiles_dir/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh} \
+    $dotfiles_dir/.bash_{prompt,aliases,completion,variables,keymap,fzf,others} \
+    $dotfiles_dir/functions/* \
+    )
+for file in ${SOURCE_LIST[@]}; do
     if [ -f "$file" ] && [ -r "$file" ]; then
         # echo "Loading the $file"
         source "$file";
     fi
 done;
 unset file;
+
+# Load the script files.
+[ -d "$dotfiles_dir/script" ] && export PATH="${PATH:+${PATH}:}$dotfiles_dir/script"

@@ -15,7 +15,7 @@ or the file type is 'symbolic link', it will detemeter the real path, then ask a
 git clone https://github.com/Calvin-Zeng/dotfiles.git && cd dotfiles && sh Install.sh
 ```
 
-## Dependent tools Installation
+## Dependencies tools Installation
 
 Once you finished the dotfiles installed, The dotfiles depend some tools.(like:
 [fzf](https://github.com/junegunn/fzf),
@@ -28,6 +28,7 @@ I have had wrote the script to easily deploy them. change to bootstrap_script an
 ```bash
 cd bootstrap_script
 ./Install_fzf.sh
+./Install_grv.sh
 ```
 
 [License](LICENSE)

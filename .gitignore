@@ -2,4 +2,4 @@
 *.sublime-workspace
 
 # Ignore the Backup folder change.
-Backup/*
+backup/*

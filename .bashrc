@@ -7,6 +7,11 @@ case $- in
       *) return;;
 esac
 
+# export PATH="$PATH:/home/${USER}/example/bin/"
+# export CMAKE_ROOT=$HOME/cmake-3.2.2
+
+[ -d "$HOME/local/bin" ] && export PATH="${PATH:+${PATH}:}$HOME/local/bin"
+
 # Setup fzf
 # ---------
 if [ ! $(command -v fzf) ] && [[ ! "$PATH" == *$HOME/.fzf/bin* ]]; then

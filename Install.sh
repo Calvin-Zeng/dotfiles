@@ -79,5 +79,6 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
 
         # Update the dotfiles_dir path in .bashrc
         [ "${T_Name[$i]}" == ".bashrc" ] && update_dotfiles_path
+        echo 'Finished.'
     fi
 done
