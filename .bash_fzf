@@ -24,6 +24,7 @@ alias _FZF_H40_M='fzf --cycle --border --ansi --reverse -m --height 40%'
 alias _FZF_H80='fzf --cycle --border --ansi --reverse --height 80%'
 alias _FZF_H80_M='fzf --cycle --border --ansi --reverse -m --height 80%'
 
+# TBD:fzf - change to vertical style.
 alias previewfile="fzf -m --preview 'bat --terminal-width $((COLUMNS/2-5)) --color \"always\" {} '"
 alias previewdir="fzf -m --preview 'ls --color=\"always\" -lshGg {} '"
 
@@ -49,7 +50,7 @@ _FZF_H80_M_FileList () {
 }
 
 # Load the fzf custom command.
-for fzf_file in $dotfiles_dir/bash_fzf/.fzf*; do
+for fzf_file in $dotfiles_dir/bash_fzf/.fzf_*; do
     # echo "Loading the $fzf_file"
     [ -f "$fzf_file" ] && [ -r "$fzf_file" ] && source "$fzf_file";
 done;

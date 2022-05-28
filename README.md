@@ -17,7 +17,10 @@ git clone https://github.com/Calvin-Zeng/dotfiles.git && cd dotfiles && sh Insta
 
 ## Dependent tools Installation
 
-Once you finished the dotfiles installed, The dotfiles depend some tools.(like: [fzf]: https://github.com/junegunn/fzf , [tmux]: https://github.com/tmux/tmux)  
+Once you finished the dotfiles installed, The dotfiles depend some tools.(like:
+[fzf](https://github.com/junegunn/fzf),
+[tmux](https://github.com/tmux/tmux)
+)
   
 I have had wrote the script to easily deploy them. change to bootstrap_script and perform script.  
 :information_source: The dotfiles will check dependent tools is present,If don't install these tools, It will skip some bash code, everything is fine!  
@@ -26,3 +29,10 @@ I have had wrote the script to easily deploy them. change to bootstrap_script an
 cd bootstrap_script
 ./Install_fzf.sh
 ```
+
+[License](LICENSE)
+------------------
+
+The MIT License (MIT)
+
+Copyright (c) 2022 C.L. Zeng

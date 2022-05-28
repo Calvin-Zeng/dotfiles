@@ -30,8 +30,17 @@ shopt -s checkwinsize
 # export CMAKE_ROOT=$HOME/cmake-3.2.2
 
 # Load the shell dotfiles.
-for file in $dotfiles_dir/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh,bash_{color,prompt,aliases,completion,variables,keymap,fzf}}; do
+for file in $dotfiles_dir/.{bash_color,git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh,bash_{prompt,aliases,completion,variables,keymap,fzf,other}}; do
     # echo "Loading the $file"
     [ -f "$file" ] && [ -r "$file" ] && source "$file";
+done;
+unset file;
+
+# Load the extra function.
+for file in $dotfiles_dir/functions/*; do
+    if [ -f "$file" ] && [ -r "$file" ]; then
+        # echo "Loading the $file"
+        source "$file";
+    fi
 done;
 unset file;

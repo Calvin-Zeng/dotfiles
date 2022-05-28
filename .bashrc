@@ -1,4 +1,5 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
+# The original .bashrc file path is in: /etc/skel/.bashrc
 
 # If not running interactively, don't do anything
 case $- in

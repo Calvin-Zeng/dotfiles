@@ -4,6 +4,7 @@ source SourceList.sh
 SCRIPT_PATH=$(readlink -f $0)
 REPO_PATH=$(dirname $SCRIPT_PATH)
 DATE=$(date +"%Y-%m-%d")
+BACKUP_FOLDER="backup"
 
 # It will insert/update the dotfiles_dir path variable in .bashrc when this script process the .bashrc symbolic link.
 # so, you don't worry the repository changed the location or naming else name.
@@ -32,7 +33,7 @@ esac
 
 for ((i = 0; i < ${#T_Name[@]}; i++)); do
     target="${T_Path[$i]}/${T_Name[$i]}"
-    backup="${REPO_PATH}/Backup/${DATE}/"
+    backup="${REPO_PATH}/$BACKUP_FOLDER/${DATE}/"
 
     # The filename maybe is same as the other application, just path is different.
     [ -z "${S_Name[$i]}" ] || source="${REPO_PATH}/${S_Name[$i]}"

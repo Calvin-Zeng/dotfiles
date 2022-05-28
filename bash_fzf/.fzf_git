@@ -1,0 +1,18 @@
+alias _FZF_GIT_BR='git branch | _FZF_H40 | tr -d '\''[:space:]'\'''
+alias _FZF_GIT_LOG='git log --oneline | _FZF_H40_M | awk '\''{print $1 }'\'' | tr '\''\n'\'' '\'' '\'''
+# git diff --name-only --cached
+# git ls-files --modified
+# git ls-files --others
+alias _FZF_GIT_STATUS_SHORT="git status --short | fzf --multi --color=dark --cycle --border --ansi --preview-window=up:70% --preview=\"git diff --color {+2}\" | awk '{print \$2}'"
+alias _FZF_GIT_DIFF_NAME="git diff --name-only | fzf --multi --color=dark --cycle --border --ansi --preview-window=up:70% --preview=\"git diff --color {+1}\""
+alias _FZF_GIT_DIFF_CACHED_NAME="git diff --name-only --cached | fzf --multi --color=dark --cycle --border --ansi --preview-window=up:70% --preview=\"git diff --color --staged {+1}\""
+
+alias git_br_del='_FZF_GIT_BR | xargs --no-run-if-empty git branch -d'
+alias git_co_br='_FZF_GIT_BR | xargs --no-run-if-empty git checkout'
+alias git_co_log='_FZF_GIT_LOG | xargs --no-run-if-empty git checkout'
+alias git_co_file='_FZF_GIT_DIFF_NAME | xargs --no-run-if-empty git checkout'
+alias git_ad='_FZF_GIT_STATUS_SHORT | xargs --no-run-if-empty git add'
+alias git_gen_patch='git diff $(_FZF_GIT_LOG) --no-color'
+alias git_gen_no_commit_patch='git diff -- . '\"':(exclude).config'\"' --no-color'
+alias git_btoaplus='_FZF_GIT_DIFF_CACHED_NAME | xargs --no-run-if-empty git reset HEAD'
+alias git_ctob='git reset --soft HEAD^'

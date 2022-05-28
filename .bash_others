@@ -1,0 +1,8 @@
+# Ruby's timetrap
+# Reference:
+# https://github.com/samg/timetrap
+[ -f /var/lib/gems/2.7.0/gems/timetrap-1.15.2/completions/bash/timetrap-autocomplete.bash ] && \
+    source /var/lib/gems/2.7.0/gems/timetrap-1.15.2/completions/bash/timetrap-autocomplete.bash
+
+# bat can be used as a colorizing pager for man, by setting the MANPAGER environment variable:
+command -v bat > /dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
