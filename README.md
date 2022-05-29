@@ -30,7 +30,7 @@ cd bootstrap_script
 ./Install_fzf.sh
 ./Install_grv.sh
 
-cd bootstrap_script/Install_tmux
+cd bootstrap_script/Install_tmux.sh
 ./tmux_local_install.sh
 ```
 
