@@ -1,0 +1,3 @@
+[submodule "bootstrap_script/Install_tmux.sh"]
+	path = bootstrap_script/Install_tmux.sh
+	url = git@gist.github.com:e697c47d5e5f14a0812403d0104a8f7e.git

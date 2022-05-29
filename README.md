@@ -29,6 +29,9 @@ I have had wrote the script to easily deploy them. change to bootstrap_script an
 cd bootstrap_script
 ./Install_fzf.sh
 ./Install_grv.sh
+
+cd bootstrap_script/Install_tmux
+./tmux_local_install.sh
 ```
 
 [License](LICENSE)

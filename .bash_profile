@@ -32,7 +32,7 @@ SOURCE_LIST=(\
     $dotfiles_dir/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh} \
     $dotfiles_dir/.bash_{prompt,aliases,completion,variables,keymap,fzf,others} \
     $dotfiles_dir/functions/* \
-    )
+)
 for file in ${SOURCE_LIST[@]}; do
     if [ -f "$file" ] && [ -r "$file" ]; then
         # echo "Loading the $file"

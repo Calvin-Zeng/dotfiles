@@ -39,7 +39,7 @@ if [ "$color_prompt" = yes ]; then
     # Current path.
     PS1+=' \[\033[01;34m\]\[\033[40m\]$(__split_pwd)'
     # Git prompt.
-    PS1+='\[\033[01;31m\]$(__git_ps1 " \n\\u27a6(%s)")\[\033[00m\]'
+    PS1+='\[\033[01;31m\]$(__git_ps2 " \n\\u27a6(%s)")\[\033[00m\]'
     # Secondary line.
     PS1+='\n\[\033[38;5;243m\]╰─\[\033[01;31m\]\$ \[\033[00m\]'
 else

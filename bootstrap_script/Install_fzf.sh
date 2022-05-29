@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SCRIPT_PATH=$(readlink -f $0)
-REPO_PATH=$(dirname $SCRIPT_PATH)
+script_path=$(readlink -f $0)
+repo_path=$(dirname $script_path)
 
 version=0.30.0
 offline_file="offline_fzf.tar.gz"
@@ -29,7 +29,7 @@ install_fzf_with_internet() {
     cd ~/.fzf
     git pull
   fi
-  echo 'Finished.'
+  echo -e "\n~/.fzf/bin/fzf is now available. You can optionally add ~/.fzf/bin/ to your \$PATH."}
 }
 
 install_fzf_without_internet() {
@@ -38,7 +38,7 @@ No internet, Please follow the instruction to action.
 Run the script on online system:
     $0 --offline
 
-and copy $offline_file on off-line system path to $REPO_PATH
+and copy $offline_file on off-line system path to $repo_path
 
 After that, On Off-line system:
     $0 --install
@@ -51,7 +51,7 @@ EOF
   extract fzf-$version-* ~/.fzf/bin/
   [ $? -eq 0 ] || die "Extract fzf binary file failed! exit."
   rm .fzf.tar.gz fzf-$version-*
-  echo 'Finished.'
+  echo -e "\n~/.fzf/bin/fzf is now available. You can optionally add ~/.fzf/bin/ to your \$PATH."
 }
 
 download_fzf_for_offline() {
@@ -87,9 +87,9 @@ download_fzf_for_offline() {
 
 check_internet() {
   if $(nc -zw1 "google.com" "443" 2> /dev/null); then
-    return 1
+    return 0
   fi
-  return 0
+  return 1
 }
 
 help() {
@@ -114,11 +114,11 @@ for opt in "$@"; do
       ;;
     --install)
       check_internet
-      [[  $? -eq "0" ]] && install_fzf_without_internet || install_fzf_with_internet
+      [[  $? -eq 1 ]] && install_fzf_without_internet || install_fzf_with_internet
       ;;
     --offline)
       check_internet
-      [[  $? -eq "0" ]] && die "Check your internet connectivity."
+      [[  $? -eq 1 ]] && die "Check your internet connectivity."
       download_fzf_for_offline
       ;;
     *)

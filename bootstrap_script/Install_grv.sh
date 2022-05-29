@@ -13,5 +13,7 @@ die() {
 [ -f grv ] || wget -O grv $url/$file
 [ $? -eq  0 ] || die "Download the $url/$file fail!"
 chmod +x ./grv
+
+[ -d "$install_prefix" ] || mkdir -p $install_prefix
 cp ./grv $install_prefix
-echo 'Finished.'
+echo -e "\n${install_prefix}/grv is now available. You can optionally add $install_prefix to your \$PATH."
