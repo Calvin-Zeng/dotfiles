@@ -1,0 +1,13 @@
+# Please copy and rename this file to .extra
+
+# Git configuration
+GIT_AUTHOR_NAME="unname"
+GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
+git config --global user.name "$GIT_AUTHOR_NAME"
+GIT_AUTHOR_EMAIL="unname@test.com"
+GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
+git config --global user.email "$GIT_AUTHOR_EMAIL"
+
+# Tell Git the sign key and use key for commit
+git config --global commit.gpgsign true
+git config --global user.signingkey 3AA5C34371567BD2

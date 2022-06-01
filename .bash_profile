@@ -29,7 +29,7 @@ shopt -s checkwinsize
 # Load the shell dotfiles.
 SOURCE_LIST=(\
     $dotfiles_dir/.bash_color \
-    $dotfiles_dir/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh} \
+    $dotfiles_dir/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh,extra} \
     $dotfiles_dir/.bash_{prompt,aliases,completion,variables,keymap,fzf,others} \
     $dotfiles_dir/functions/* \
 )

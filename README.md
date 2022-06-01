@@ -21,17 +21,22 @@ Once you finished the dotfiles installed, The dotfiles depend some tools.(like:
 [fzf](https://github.com/junegunn/fzf),
 [tmux](https://github.com/tmux/tmux)
 )
+
+**I prefer you install tools by root if you have root access privileges.**  
   
-I have had wrote the script to easily deploy them. change to bootstrap_script and perform script.  
-:information_source: The dotfiles will check dependent tools is present,If don't install these tools, It will skip some bash code, everything is fine!  
+otherwise, I have had wrote some script to easily deploy them without root access. change to bootstrap_script folder and perform script.  
+:information_source: The dotfiles will check dependent tools is present,If you don't install these tools, It will skip some bash code, everything is works fine!  
 
 ```bash
 cd bootstrap_script
 ./Install_fzf.sh
 ./Install_grv.sh
 
-cd bootstrap_script/Install_tmux.sh
+cd bootstrap_script/Install_tmux.sh/
 ./tmux_local_install.sh
+
+cd bootstrap_script/Install_mc.sh/
+./mc_local_install.sh
 ```
 
 [License](LICENSE)

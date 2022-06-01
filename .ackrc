@@ -1,0 +1,39 @@
+# You can use 'ack --dump' command to dump config.
+# Always sort the files
+--sort-files
+
+# Always color, even if piping to another program
+--color
+
+# Search all file
+#--all
+
+# Don't follow symbolic link.
+--nofollow
+
+# Don't search binary file.
+#--nobinary
+
+# Use "less -r" as my pager
+#--pager=less -r
+
+# You can use 'ack --help-types' to query available type.
+--type-set=ch:ext:h
+--type-set=c:ext:c
+
+# Force PATTERN to match only whole words.
+#--word-regexp
+
+# Print NUM lines (default 2) of context around matching lines.
+--context=3
+
+# Excluded specific file.
+--ignore-file=is:.tags
+--ignore-file=is:.tags_sorted_by_file
+
+# Setting below config to .ackrc in your project directory to...
+# Excluded specific file.
+#--ignore-file=is:target_qca.c
+
+# Excluded specific directory.
+#--ignore-directory=is:platform
