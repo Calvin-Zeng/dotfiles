@@ -1,6 +1,6 @@
 [submodule "bootstrap_script/Install_tmux.sh"]
 	path = bootstrap_script/Install_tmux.sh
-	url = git@gist.github.com:e697c47d5e5f14a0812403d0104a8f7e.git
+	url = https://gist.github.com/Calvin-Zeng/e697c47d5e5f14a0812403d0104a8f7e
 [submodule "bootstrap_script/Install_mc.sh"]
 	path = bootstrap_script/Install_mc.sh
-	url = git@gist.github.com:7cd698b5eb879f0a9e6a40af301b0000.git
+	url = https://gist.github.com/Calvin-Zeng/7cd698b5eb879f0a9e6a40af301b0000 
