@@ -10,14 +10,14 @@ BACKUP_FOLDER="backup"
 # so, you don't worry the repository changed the location or naming else name.
 update_dotfiles_path() {
     # Remove the old dotfiles hook in ~/.bashrc
-    sed -i -f "$REPO_PATH/.bashrc_sed.scr" $REPO_PATH/.bashrc
+    sed -i -f "$REPO_PATH/.bashrc_sed.scr" $REPO_PATH/bash_library/.bashrc
 
-    cat << EOF >> $REPO_PATH/.bashrc
+    cat << EOF >> $REPO_PATH/bash_library/.bashrc
 # dotfiles hook.
 dotfiles_dir="$REPO_PATH"
 [ -f "\$dotfiles_dir/.bash_profile" ] && source "\$dotfiles_dir/.bash_profile";
 
-unset dotfiles_dir
+unset dotfiles_dir color_prompt force_color_prompt
 EOF
 }
 
@@ -56,7 +56,7 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
                 esac
             else
                 # Update the dotfiles_dir path in .bashrc
-                [ "${T_Name[$i]}" == ".bashrc" ] && update_dotfiles_path
+                [ "${T_Name[$i]}" == "bash/.bashrc" ] && update_dotfiles_path
                 continue
             fi
         fi
@@ -78,7 +78,7 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
         ln -s "$source" "$target"
 
         # Update the dotfiles_dir path in .bashrc
-        [ "${T_Name[$i]}" == ".bashrc" ] && update_dotfiles_path
+        [ "${T_Name[$i]}" == "bash/.bashrc" ] && update_dotfiles_path
         echo 'Finished.'
     fi
 done

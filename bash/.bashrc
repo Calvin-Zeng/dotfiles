@@ -28,6 +28,6 @@ source "$HOME/.fzf/shell/key-bindings.bash" 2> /dev/null
 
 # dotfiles hook.
 dotfiles_dir="$HOME/dotfiles"
-[ -f "$dotfiles_dir/.bash_profile" ] && source "$dotfiles_dir/.bash_profile";
+[ -f "$dotfiles_dir/bash_library/.bash_profile" ] && source "$dotfiles_dir/bash_library/.bash_profile";
 
 unset dotfiles_dir color_prompt force_color_prompt

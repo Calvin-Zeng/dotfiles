@@ -28,10 +28,11 @@ shopt -s checkwinsize
 
 # Load the shell dotfiles.
 SOURCE_LIST=(\
-    $dotfiles_dir/.bash_color \
-    $dotfiles_dir/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh,extra} \
-    $dotfiles_dir/.bash_{prompt,aliases,completion,variables,keymap,fzf,others} \
-    $dotfiles_dir/functions/* \
+    $dotfiles_dir/bash_library/.bash_color \
+    $dotfiles_dir/bash_library/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh} \
+    $dotfiles_dir/bash_library/.bash_{prompt,aliases,completion,variables,keymap,fzf,others} \
+    $dotfiles_dir/bash_library/functions/* \
+    $HOME/.extra \
 )
 for file in ${SOURCE_LIST[@]}; do
     if [ -f "$file" ] && [ -r "$file" ]; then
@@ -42,4 +43,4 @@ done;
 unset file;
 
 # Load the script files.
-[ -d "$dotfiles_dir/script" ] && export PATH="${PATH:+${PATH}:}$dotfiles_dir/script"
+[ -d "$dotfiles_dir/bash_library/script" ] && export PATH="${PATH:+${PATH}:}$dotfiles_dir/bash_library/script"

@@ -5,21 +5,40 @@ I also write an Install.sh for the deploy workspace phases, if you give these do
 
 ## Installation
 
-**Warning:** Plaese review the Install.sh before perform it.  
+**Warning:** Plaese review the Install.sh(Install.sh)/Install-stow.sh(Install-stow.sh) before perform it.  
   
+There are two method to install this dotfiles, One is use Gnu stow, another is the normal file/symbolic link check mechanism.  
+
+```bash
+cd ~
+git clone https://github.com/Calvin-Zeng/dotfiles.git && cd dotfiles
+```
+
+### Use the Gnu stow
+
+If you use this way, I suggest the dotfiles need placed at $HOME,  
+then please remove the annotated line which you want to deploy part.  
+
+```bash
+sh Install-stow.sh
+```
+
+### Normal file/symbolic link check
+
 The script will check the dotfiles which previously existed,  
 if the file type is 'file', then backup to the Backup folder.  
 or the file type is 'symbolic link', it will detemeter the real path, then ask action to you.  
 
 ```bash
-git clone https://github.com/Calvin-Zeng/dotfiles.git && cd dotfiles && sh Install.sh
+sh Install.sh
 ```
 
 ## Dependencies tools Installation
 
 Once you finished the dotfiles installed, The dotfiles depend some tools.(like:
 [fzf](https://github.com/junegunn/fzf),
-[tmux](https://github.com/tmux/tmux)
+[tmux](https://github.com/tmux/tmux),
+[Midnight Commander](https://github.com/MidnightCommander/mc)
 )
 
 **I prefer you install tools by root if you have root access privileges.**  
