@@ -3,14 +3,14 @@
 
 CYAN="$(tput bold ; tput setaf 6)"
 NOCOLOUR="$(tput sgr0)"
-MAXMEMSIZE="$(free -h|awk '/^Mem:/{print $2}' | sed -e "s/Gi//g")"
+MAXMEMSIZE="$(free -h|awk '/^Mem:/{print $2}' | sed -e "s/Gi//g" -e "s/G//g")"
 
 load_out() {
   echo -n "$(uptime | sed -e "s/.*load average: \(.*\...\), \(.*\...\), \(.*\...\).*/\1/" -e "s/ //g")"
 }
 
 load_out_mem() {
-  echo -n "$(free -h|awk '/^Mem:/{print $7}' | sed -e "s/Gi//g")"
+  echo -n "$(free -h|awk '/^Mem:/{print $7}' | sed -e "s/Gi//g" -e "s/G//g")"
 }
 
 load_color() {

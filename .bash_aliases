@@ -25,7 +25,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias sourcebashrc='source ~/.bashrc'
 alias help='tldr'
-alias cat='bat'
+# alias cat='bat'
 alias beep="paplay /usr/share/sounds/ubuntu/stereo/message.ogg"
 
 # chmod and permissions commands

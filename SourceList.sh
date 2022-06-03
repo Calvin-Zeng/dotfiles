@@ -35,10 +35,17 @@ T_Path[10]="$HOME"
 T_Name[11]=".imwheelrc"
 T_Path[11]="$HOME"
 
-T_Name[12]=".selected_edito"
+T_Name[12]=".selected_editor"
 T_Path[12]="$HOME"
 
+# Midnight commander
+T_Name[13]="mc"
+T_Path[13]="$HOME/.local/share/"
+
+T_Name[14]="mc"
+T_Path[14]="$HOME/.config/"
+
 # $HOME/.config/XXX
-S_Name[13]="terminator_config"
-T_Name[13]="config"
-T_Path[13]="$HOME/.config/terminator"
+S_Name[15]="terminator_config"
+T_Name[15]="config"
+T_Path[15]="$HOME/.config/terminator"

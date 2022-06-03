@@ -43,7 +43,7 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
     # echo "$source"
 
     # repo dot file is present, then create a symbolic link to repo dot file.
-    if [ -f "$source" ]; then
+    if [ -f "$source" ] || [ -d "$source" ]; then
         # Handle the symbolic link.
         if [ -L "$target" ]; then
             # Check the path is link to repo.
@@ -61,8 +61,8 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
             fi
         fi
 
-        # If the original dot file is file type, then backup it.
-        if [ -f "$target" ]; then
+        # If the original dot file/folder is entity, then backup it.
+        if [ -f "$target" ] || [ -d "$target" ]; then
             [ ! -d "$backup" ] && mkdir -p "$backup"
 
             # The filename maybe is same as the other application, just path is different.
