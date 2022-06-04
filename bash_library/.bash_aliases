@@ -51,17 +51,22 @@ alias ...='cd ../../'
 alias ....='cd ../../../'
 alias .....='cd ../../../../'
 
+# https://stackoverflow.com/questions/39017391/how-to-make-midnight-commander-exit-to-its-current-directory
+[ $(command -v mc) ] && alias mc='source '$dotfiles_dir/mc/'mc-wrapper.sh'
+
 # Put string to x11 clipboard.
-alias xc='xclip -selection clipboard'
-alias xc0='nto0 | xclip -selection clipboard'
-# Put specific path(dir or file) with out \r\n to x11 clipboard.
-alias xcpwd='pwd | nto0 | xclip -selection clipboard'
-# Copy file or dir to to X11 clipboard
-alias xcfcp='xclip-copyfile'
-# Cut file or dir to to X11 clipboard
-alias xcfcu='xclip-cutfile'
-# Paste file or dir to to X11 clipboard
-alias xcfp='xclip-pastefile'
+if [ $(command -v xclip) ]; then
+  alias xc='xclip -selection clipboard'
+  alias xc0='nto0 | xclip -selection clipboard'
+  # Put specific path(dir or file) with out \r\n to x11 clipboard.
+  alias xcpwd='pwd | nto0 | xclip -selection clipboard'
+  # Copy file or dir to to X11 clipboard
+  alias xcfcp='xclip-copyfile'
+  # Cut file or dir to to X11 clipboard
+  alias xcfcu='xclip-cutfile'
+  # Paste file or dir to to X11 clipboard
+  alias xcfp='xclip-pastefile'
+fi
 
 # Command "read" or "showkey -a" to print key code.
 alias {showkey,ascii}='echo -e "AscII\t Dec Oct Hex"; showkey -a'

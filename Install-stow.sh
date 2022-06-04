@@ -26,3 +26,5 @@ check_prog stow
 #stow --target "$HOME" bash
 #stow --target "$HOME" mc
 #stow --target "$HOME" terminator
+#stow --target "$HOME" subversion
+#stow --target "$HOME" xfce

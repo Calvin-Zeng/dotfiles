@@ -46,3 +46,11 @@ gpg() {
     $exec_path ${param} "$@"
     unset exec_path param
 }
+
+engpg() {
+    gpg -er $__gpg__key $1
+}
+
+degpg() {
+    gpg -do ${1%.*}{,.gpg}
+}

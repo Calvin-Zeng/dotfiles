@@ -3,3 +3,10 @@
 
 # Ignore the Backup folder change.
 backup/*
+
+# Some secret files
+bash/.extra
+bash/.fwknoprc
+mc/.config/mc/hotlist
+mc/.config/mc/hotlist.bak
+mc/.local/share/mc/history

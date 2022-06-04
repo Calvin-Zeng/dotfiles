@@ -1,11 +1,11 @@
 # C.L Zeng’s dotfiles
 
 It's just a dotfile for myself used.  
-I also write an Install.sh for the deploy workspace phases, if you give these dotfiles a try, Please fork this repository.
+I also write an install script to deploy workspace environment, if you give these dotfiles a try, Please fork this repository.
 
 ## Installation
 
-**Warning:** Plaese review the Install.sh(Install.sh)/Install-stow.sh(Install-stow.sh) before perform it.  
+**Warning:** Plaese review the [Install.sh](Install.sh)/[Install-stow.sh](Install-stow.sh) before perform it.  
   
 There are two method to install this dotfiles, One is use Gnu stow, another is the normal file/symbolic link check mechanism.  
 

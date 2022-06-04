@@ -50,7 +50,7 @@ _FZF_H80_M_FileList () {
 }
 
 # Load the fzf custom command.
-for fzf_file in $dotfiles_dir/bash_fzf/.fzf_*; do
+for fzf_file in $dotfiles_dir/bash_library/bash_fzf/.fzf_*; do
     # echo "Loading the $fzf_file"
     [ -f "$fzf_file" ] && [ -r "$fzf_file" ] && source "$fzf_file";
 done;
