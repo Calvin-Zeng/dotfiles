@@ -40,6 +40,6 @@ for file in ${SOURCE_LIST[@]}; do
         source "$file";
     fi
 done;
-unset file;
+unset file SOURCE_LIST;
 
 [ -d "$dotfiles_dir/bash_library/script" ] && [ ! "$PATH" == *$dotfiles_dir/bash_library/script* ] && export PATH="${PATH:+${PATH}:}$dotfiles_dir/bash_library/script"

@@ -18,7 +18,7 @@ PATH_LIST=(\
 for tmp_path in ${PATH_LIST[@]}; do
     [ -d "$tmp_path" ] && [ ! "$PATH" == *$tmp_path* ] && export PATH="${PATH:+${PATH}:}$tmp_path"
 done;
-unset tmp_path;
+unset tmp_path PATH_LIST
 
 # Setup fzf
 # ---------

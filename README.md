@@ -11,7 +11,7 @@ There are two method to install this dotfiles, One is use Gnu stow, another is t
 
 ```bash
 cd ~
-git clone https://github.com/Calvin-Zeng/dotfiles.git && cd dotfiles
+git clone --recurse-submodules https://github.com/Calvin-Zeng/dotfiles.git && cd dotfiles
 ```
 
 ### Use the Gnu stow
@@ -32,6 +32,12 @@ or the file type is 'symbolic link', it will detemeter the real path, then ask a
 ```bash
 sh Install.sh
 ```
+
+### Custom setting for yourself.
+
+You can easily set the specific configuration for yourself want.  
+In the [.extra](bash_library/.extra.example) file, it's a example template.  
+Modify this file and copy to $HOME/.extra, then it will load-in during terminal bootstrap.  
 
 ## Dependencies tools Installation
 

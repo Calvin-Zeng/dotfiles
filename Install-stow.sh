@@ -8,6 +8,15 @@ die() {
   exit 1
 }
 
+confirm() {
+  read -r -p "$1" answer
+  case $answer in
+      ""|[Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer Y or N."; return 1;;
+  esac
+}
+
 [ ! $(command -v stow) ] && die "Gnu stow not found, Aborting..."
 [ -d "$HOME/.config" ] || mkdir -p "$HOME/.config"
 
@@ -22,11 +31,7 @@ packages_list=(\
 
 for package in ${packages_list[@]}; do
   [ -d "$package" ] || continue;
-  read -r -p "Setup the $package? ([Y]/N): " answer
-  case $answer in
-      ""|[Yy]* ) stow --target "$HOME" "$package";;
-      [Nn]* ) continue;;
-      * ) echo "Please answer Y or N, Ignore!"; continue;;
-  esac
+  confirm "Setup the $package? ([Y]/N): "
+  [ $? -eq 0 ] && stow --target "$HOME" "$package";
 done;
 unset package;
