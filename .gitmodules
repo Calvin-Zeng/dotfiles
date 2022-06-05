@@ -4,3 +4,6 @@
 [submodule "bootstrap_script/Install_mc.sh"]
 	path = bootstrap_script/Install_mc.sh
 	url = https://gist.github.com/Calvin-Zeng/7cd698b5eb879f0a9e6a40af301b0000 
+[submodule "sublime-text/.config/sublime-text-3/Packages/User"]
+	path = sublime-text/.config/sublime-text-3/Packages/User
+	url = https://github.com/Calvin-Zeng/sublime-config.git

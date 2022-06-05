@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# im-config : ibus use.
+exec $HOME/app_images/sublime_text "$@"
+
+# im-config : fcitx use.
+# Common use in Ubuntu 18.04 version before.
+#   export LD_PRELOAD=$HOME/dotfiles/sublime-text/imfix/Method1/libsublime-imfix.so 
+#   exec $HOME/app_images/sublime_text "$@"

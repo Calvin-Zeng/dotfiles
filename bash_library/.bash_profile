@@ -42,5 +42,4 @@ for file in ${SOURCE_LIST[@]}; do
 done;
 unset file;
 
-# Load the script files.
-[ -d "$dotfiles_dir/bash_library/script" ] && export PATH="${PATH:+${PATH}:}$dotfiles_dir/bash_library/script"
+[ -d "$dotfiles_dir/bash_library/script" ] && [ ! "$PATH" == *$dotfiles_dir/bash_library/script* ] && export PATH="${PATH:+${PATH}:}$dotfiles_dir/bash_library/script"

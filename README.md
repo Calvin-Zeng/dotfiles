@@ -1,4 +1,4 @@
-# C.L Zeng’s dotfiles
+# C.L. Zeng’s dotfiles
 
 It's just a dotfile for myself used.  
 I also write an install script to deploy workspace environment, if you give these dotfiles a try, Please fork this repository.

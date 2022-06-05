@@ -7,10 +7,18 @@ case $- in
       *) return;;
 esac
 
-# export PATH="$PATH:/home/${USER}/example/bin/"
 # export CMAKE_ROOT=$HOME/cmake-3.2.2
 
-[ -d "$HOME/local/bin" ] && export PATH="${PATH:+${PATH}:}$HOME/local/bin"
+# Manual compiled applications will put in the $HOME/local/bin directory.
+# And the other will put in the $HOME/.local/bin directory(like: python-inst).
+PATH_LIST=(\
+    $HOME/local/bin \
+    $HOME/.local/bin \
+)
+for tmp_path in ${PATH_LIST[@]}; do
+    [ -d "$tmp_path" ] && [ ! "$PATH" == *$tmp_path* ] && export PATH="${PATH:+${PATH}:}$tmp_path"
+done;
+unset tmp_path;
 
 # Setup fzf
 # ---------

@@ -1,30 +1,32 @@
 #!/bin/bash
+# Delete the symbolic link by stow, run stow -D in the dotfiles directory.
+# E.g.
+#   stow -D bash
 
-# Copy from https://github.com/woefe/dotfiles/blob/master/install.sh
-function check_prog() {
-    if ! hash "$1" > /dev/null 2>&1; then
-        echo "Command not found: $1. Aborting..."
-        exit 1
-    fi
+die() {
+  echo $1
+  exit 1
 }
 
-check_prog stow
-
+[ ! $(command -v stow) ] && die "Gnu stow not found, Aborting..."
 [ -d "$HOME/.config" ] || mkdir -p "$HOME/.config"
 
-############################# How to use it #############################
-#                                                                       #
-# Uncomment the lines of the configs you want to install below.         #
-# Then run this script from within the dotfiles directory.              #
-# E.g. `cd ~/dotfiles; ./install.sh`                                    #
-#                                                                       #
-# To uninstall the config later, run stow -D in the dotfiles directory. #
-# E.g. `cd ~/dotfiles; stow -D bash`                                    #
-#                                                                       #
-#########################################################################
+packages_list=(\
+  bash \
+  mc \
+  sublime-text \
+  subversion \
+  terminator \
+  xfce \
+)
 
-#stow --target "$HOME" bash
-#stow --target "$HOME" mc
-#stow --target "$HOME" terminator
-#stow --target "$HOME" subversion
-#stow --target "$HOME" xfce
+for package in ${packages_list[@]}; do
+  [ -d "$package" ] || continue;
+  read -r -p "Setup the $package? ([Y]/N): " answer
+  case $answer in
+      ""|[Yy]* ) stow --target "$HOME" "$package";;
+      [Nn]* ) continue;;
+      * ) echo "Please answer Y or N, Ignore!"; continue;;
+  esac
+done;
+unset package;
