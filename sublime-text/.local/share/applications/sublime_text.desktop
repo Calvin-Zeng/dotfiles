@@ -16,7 +16,7 @@ Exec=$HOME/app_images/sublime_text %F
 
 Terminal=false
 MimeType=text/plain;
-Icon=$HOME/dotfiles/sublime-text/icon/48x48/sublime-text.png
+Icon=$HOME/app_images/sublime_text/icon/48x48/sublime-text.png
 Categories=TextEditor;Development;
 StartupNotify=true
 Actions=Window;Document;

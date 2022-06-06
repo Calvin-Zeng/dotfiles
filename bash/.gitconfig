@@ -2,15 +2,17 @@
 [color]
 	ui = auto
 [diff]
-	# tool = icdiff
-	tool = meld
-#[difftool]
-	# prompt = false
+	tool = icdiff
+	# tool = meld
+[difftool]
+	prompt = false
 [difftool "meld"]
 	cmd = meld "$LOCAL" "$REMOTE"
-	# external = /home/bob/Work/diff.py
+	# external = $HOME/Work/diff.py
 [difftool "icdiff"]
-	cmd = icdiff "$LOCAL" "$REMOTE"
+	cmd = icdiff -N "$LOCAL" "$REMOTE"
+[icdiff]
+	options = --line-numbers
 [merge]
 	tool = meld
 [mergetool "meld"]
@@ -40,9 +42,3 @@
 	sh = show
 	rl = rev
 	rem = remote
-[user]
-	name = CiLunZeng
-	email = cilun0812@gmail.com
-	signingkey = DB8D7D746478D84D
-[commit]
-	gpgsign = true

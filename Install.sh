@@ -44,10 +44,10 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
     [ -z "${S_Name[$i]}" ] || source="${REPO_PATH}/${S_Name[$i]}"
     [ -z "${S_Name[$i]}" ] && source="${REPO_PATH}/${T_Name[$i]}"
 
-    confirm "Change the $target to symbolic link($source), Are you sure? ([Y]/N): "
-    [ $? -eq 1 ] && echo "Skip." && continue
-
     [ ! -f "$source" ] && [ ! -d "$source" ] && continue
+
+    confirm "Proccess the $target? ([Y]/N): "
+    [ $? -eq 1 ] && echo "Skip." && continue
 
     # Handle the symbolic link.
     if [ -L "$target" ]; then
@@ -64,20 +64,16 @@ for ((i = 0; i < ${#T_Name[@]}; i++)); do
 
     # If the original dot file/folder is entity, then backup it.
     if [ -f "$target" ] || [ -d "$target" ]; then
-        [ ! -d "$backup" ] && mkdir -p "$backup"
+        [ ! -d "$backup/${T_Path[$i]}" ] && mkdir -p "$backup/${T_Path[$i]}"
 
-        # The filename maybe is same as the other application, just path is different.
-        if [ ! -z "${S_Name[$i]}" ] ; then
-            echo "Backup the $target to $backup/${S_Name[$i]}"
-            mv "$target" "$backup/${S_Name[$i]}"
-        else
-            echo "Backup the $target to $backup"
-            mv "$target" "$backup"
-        fi
+        echo "Backup the $target to $backup/${T_Path[$i]}/${T_Name[$i]}"
+        mv "$target" "$backup/${T_Path[$i]}/${T_Name[$i]}"
     fi
 
-    [ ! -d "$T_Path" ] && confirm "Folder: $T_Path isn't exist. Create? ([Y]/N): "
-    [ $? -eq 0 ] && mkdir -p "$T_Path" || continue
+    if [ ! -d "$T_Path" ]; then
+        confirm "Folder: $T_Path isn't exist. Create? ([Y]/N): "
+        [ $? -eq 0 ] && mkdir -p "$T_Path" || continue
+    fi
 
     # create a symbolic link to repo dot file.
     ln -s "$source" "$target"

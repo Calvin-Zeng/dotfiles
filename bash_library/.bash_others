@@ -6,3 +6,13 @@
 
 # bat can be used as a colorizing pager for man, by setting the MANPAGER environment variable:
 command -v bat > /dev/null && export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# Put this confirm function last.
+confirm() {
+  read -r -p "$1" answer
+  case $answer in
+      ""|[Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer Y or N."; return 1;;
+  esac
+}

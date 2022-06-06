@@ -56,6 +56,7 @@ otherwise, I have had wrote some script to easily deploy them without root acces
 cd bootstrap_script
 ./Install_fzf.sh
 ./Install_grv.sh
+./Install_sublime.sh
 
 cd bootstrap_script/Install_tmux.sh/
 ./tmux_local_install.sh

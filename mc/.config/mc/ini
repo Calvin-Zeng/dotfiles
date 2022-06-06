@@ -86,7 +86,7 @@ skin=dark
 
 [Layout]
 output_lines=0
-left_panel_size=79
+left_panel_size=86
 top_panel_size=18
 message_visible=true
 keybar_visible=true
@@ -114,10 +114,26 @@ clipboard_paste=
 base_color=
 xterm-256color=
 color_terminals=
-
 screen-256color=
-
 xterm-color=
+
+# export TERM=linux
+# export TERM=xterm
+# export TERM=xterm-basic
+# export TERM=xterm-color
+# export TERM=xterm-256color
+# export TERMINFO=local/share/terminfo/
+
+[terminal:xterm-color]
+f1=\\e[[A
+f2=\\e[[B
+f3=\\e[[C
+f4=\\e[[D
+f5=\\e[[E
+f6=\\e[[F
+f7=\\e[[G
+f8=\\e[[H
+f9=\\e[[I
 
 [Panels]
 show_mini_info=true
