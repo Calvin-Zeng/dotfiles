@@ -54,8 +54,10 @@ otherwise, I have had wrote some script to easily deploy them without root acces
 
 ```bash
 cd bootstrap_script
+./Install_bat.sh
 ./Install_fzf.sh
 ./Install_grv.sh
+./Install_icdiff.sh
 ./Install_sublime.sh
 
 cd bootstrap_script/Install_tmux.sh/

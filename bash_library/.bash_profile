@@ -31,6 +31,7 @@ SOURCE_LIST=(\
     $dotfiles_dir/bash_library/.bash_color \
     $dotfiles_dir/bash_library/.{git-prompt.sh,loading-prompt.sh,split-pwd.sh,system_logo.sh} \
     $dotfiles_dir/bash_library/.bash_{prompt,aliases,completion,variables,keymap,fzf,others} \
+    $dotfiles_dir/bash_library/bat.{bash,zsh}\
     $dotfiles_dir/bash_library/functions/* \
     $HOME/.extra \
 )

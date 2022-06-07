@@ -1,6 +1,9 @@
 *.sublime-project
 *.sublime-workspace
 
+# Ignore the bat autocomplete file.
+bash_library/bat.bash
+
 # Ignore the Backup folder change.
 backup/*
 
