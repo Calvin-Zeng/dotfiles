@@ -1,7 +1,13 @@
-previewack () {
-    ack -li "$1" |\
-    fzf -m --ansi --preview "bat --terminal-width $((COLUMNS/2-5)) --color \"always\" {} | grep --color=\"always\" -i -C 5 \"$1\""|\
-    xargs --no-run-if-empty subl
+akf () {
+  for args in $@; do
+    case "$args" in
+      -*i*|-*w*) opt+="$args " && shift;;
+      *) break;;
+    esac
+  done
+  _folder=$(ack -l $opt "$1" | fzf --preview "bat --terminal-width $((COLUMNS)) --color \"always\" {} | ack $opt --context=10 \"$1\"")
+  [ -d "$_folder" ] && cd "$_folder"
+  unset args opt _folder
 }
 
 previewacklist () {

@@ -1,20 +1,43 @@
 # Check the fzf is present.
 [ ! $(command -v fzf) ] && return 1
 
-# Add support for
-#   F2 : Toggle preview windows.
-#   Ctrl + a : Toggle all matched.
-#   Ctrl + o : open selected file in SublimeText.
-#   Ctrl + y : copy path to clipboard.
-#   Ctrl + s : copy selected path to /tmp/tmp_list
-#   Alt + s  : Erase /tmp/tmp_list
-#   f2:execute(bat --color \"always\" {})
-#   ctrl-d:reload(find . -type d),
-#   ctrl-f:reload($FZF_DEFAULT_COMMAND),
-export FZF_DEFAULT_OPTS="--bind='f2:toggle-preview,ctrl-a:toggle-all,ctrl-o:execute([ -d {} ] || subl {+}),ctrl-y:execute-silent(echo {+} | tr \"\n\" \"\0\" | xclip -selection clipboard),ctrl-s:execute-silent(echo {+} | tr \" \" \"\n\" >> /tmp/tmp_list_$(date +"%Y-%m-%d")),alt-s:execute-silent(cat /dev/null > /tmp/tmp_list_$(date +"%Y-%m-%d"))'"
+FZF_DEFAULT_OPTS="-m --ansi --preview '[ -f {} ] && bat --terminal-width $((COLUMNS)) --color \"always\" {} || tree -ifCL 2 {}' "
+FZF_DEFAULT_OPTS+="--preview-window='up:80%:hidden' "
+FZF_DEFAULT_OPTS+="--bind='"
+# Ctrl + d - reload to the folder list
+FZF_DEFAULT_OPTS+="ctrl-d:reload(find . -type d),"
+FZF_DEFAULT_OPTS+="ctrl-f:reload(cat /tmp/fzf_list_$(date +"%Y-%m-%d")),"
+FZF_DEFAULT_OPTS+="ctrl-h:reload(find /tmp/fzf_list_*),"
+FZF_DEFAULT_OPTS+="ctrl-g:reload(cat {}),"
+#  F3 - Toggle preview windows.
+FZF_DEFAULT_OPTS+="f3:toggle-preview,"
+#  F4 - open selected file in SublimeText.
+[ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] && \
+FZF_DEFAULT_OPTS+="f4:execute(vi {+})," \
+|| \
+[ $(command -v fzf) ] && FZF_DEFAULT_OPTS+="f4:execute(subl {+}),"
+#  Ctrl + a - Toggle all matched.
+FZF_DEFAULT_OPTS+="f8:execute(rm -ir {+}),"
+#  Ctrl + a - Toggle all matched.
+FZF_DEFAULT_OPTS+="ctrl-a:toggle-all,"
+# preview control
+# For Windows termial, like Xshell
+FZF_DEFAULT_OPTS+="alt-left:preview-page-up,"
+FZF_DEFAULT_OPTS+="alt-right:preview-page-down,"
+# For Ubuntu
+FZF_DEFAULT_OPTS+="shift-left:preview-page-up,"
+FZF_DEFAULT_OPTS+="shift-right:preview-page-down,"
+#  Ctrl + y - copy path to clipboard.
+[ $(command -v xclip) ] && FZF_DEFAULT_OPTS+="ctrl-y:execute-silent(echo {+} | tr \"\n\" \"\0\" | xclip -selection clipboard),"
+#  Ctrl + s - copy selected path to /tmp/fzf_list_
+FZF_DEFAULT_OPTS+="ctrl-s:execute-silent(echo $(pwd)/{} | tr \" \" \"\n\" >> /tmp/fzf_list_$(date +"%Y-%m-%d")),"
+#  Alt + s - Erase /tmp/fzf_list_
+FZF_DEFAULT_OPTS+="alt-s:execute-silent(cat /dev/null > /tmp/fzf_list_$(date +"%Y-%m-%d"))"
+FZF_DEFAULT_OPTS+="'"
+export FZF_DEFAULT_OPTS
 
 # Improved command
-alias lsof_fzf_ipv4="lsof -Pn -i4 | awk '{printf \"%10s %6s %5s %4s %-20s\n\", \$1, \$2, \$3, \$8, \$9}' | fzf --border --cycle --ansi --header-lines=1"
+alias lsof_ipv4="lsof -Pn -i4 | awk '{printf \"%10s %6s %5s %4s %-20s\n\", \$1, \$2, \$3, \$8, \$9}' | fzf --border --cycle --ansi --header-lines=1"
 alias service_list="cat /etc/services | fzf"
 
 # fzf material
@@ -28,8 +51,8 @@ alias _FZF_H80_M='fzf --cycle --border --ansi --reverse -m --height 80%'
 alias previewfile="fzf -m --preview 'bat --terminal-width $((COLUMNS/2-5)) --color \"always\" {} '"
 alias previewdir="fzf -m --preview 'ls --color=\"always\" -lshGg {} '"
 
-previewtree () {
-    cd $(find ./ -type d | fzf -m --ansi --preview " tree -C -L 3 {} ")
+treef () {
+    cd $(find ./ -type d | fzf --preview " tree -C -L 3 {} ")
 }
 
 # Function

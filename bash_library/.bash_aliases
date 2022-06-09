@@ -247,3 +247,11 @@ alias {zenity_pcolor,colorsel}='zenity --color-selection'
 # xrandr --output HDMI-1 --off
 alias gsettingsscaling='gsettings set org.gnome.desktop.interface text-scaling-factor'
 alias gsettingsscalingreset='gsettings reset org.gnome.desktop.interface text-scaling-factor'
+
+# Shorten the grep.
+alias gp='grep -Inr'
+alias gpi='grep -Iinr'
+
+# Shorten the ack.
+alias ak='ack -H'
+alias aki='ack -Hi'
