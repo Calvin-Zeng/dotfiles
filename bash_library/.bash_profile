@@ -13,7 +13,7 @@ shopt -s histappend
 HISTSIZE=2000
 HISTFILESIZE=4000
 HISTTIMEFORMAT='%F %T '
-HISTIGNORE="history*:History*:man*:ll*:ls*:source*:uptime*:pwd:ifconfig:cd*:help*:git_*:_FZF_*:t *"
+HISTIGNORE="history*:History*:man*:ll*:ls*:source*:uptime*:pwd:ifconfig:cd*:help*:git_*:_FZF_*:t *:.*"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

@@ -1,7 +1,10 @@
 # Check the fzf is present.
 [ ! $(command -v fzf) ] && return 1
 
-FZF_DEFAULT_OPTS="-m --ansi --preview '[ -f {} ] && bat --terminal-width $((COLUMNS)) --color \"always\" {} || tree -ifCL 2 {}' "
+# If the terminal is in the tmux session then use fzf-tmux.
+[ -n "$TMUX" ] && alias fzf='fzf-tmux'
+
+FZF_DEFAULT_OPTS="-m --ansi --preview '[ -f {} ] && bat --terminal-width ${COLUMNS} --color \"always\" {} || tree -ifCL 2 {}' "
 FZF_DEFAULT_OPTS+="--preview-window='up:80%:hidden' "
 FZF_DEFAULT_OPTS+="--bind='"
 # Ctrl + d - reload to the folder list
@@ -11,11 +14,12 @@ FZF_DEFAULT_OPTS+="ctrl-h:reload(find /tmp/fzf_list_*),"
 FZF_DEFAULT_OPTS+="ctrl-g:reload(cat {}),"
 #  F3 - Toggle preview windows.
 FZF_DEFAULT_OPTS+="f3:toggle-preview,"
-#  F4 - open selected file in SublimeText.
-[ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] && \
-FZF_DEFAULT_OPTS+="f4:execute(vi {+})," \
-|| \
-[ $(command -v fzf) ] && FZF_DEFAULT_OPTS+="f4:execute(subl {+}),"
+#  F4 - open selected file in VI or SublimeText.
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ] || [ ! $(command -v subl) ]; then
+  FZF_DEFAULT_OPTS+="f4:execute(vi {}),"
+else
+  FZF_DEFAULT_OPTS+="f4:execute([ -f {} ] && subl {} || [ -f {+1} ] && subl {+1} || [ -f {+2} ] && subl {+2}),"
+fi
 #  Ctrl + a - Toggle all matched.
 FZF_DEFAULT_OPTS+="f8:execute(rm -ir {+}),"
 #  Ctrl + a - Toggle all matched.
@@ -41,40 +45,23 @@ alias lsof_ipv4="lsof -Pn -i4 | awk '{printf \"%10s %6s %5s %4s %-20s\n\", \$1, 
 alias service_list="cat /etc/services | fzf"
 
 # fzf material
-# --multi --height 40% --reverse --border
-alias _FZF_H40='fzf --cycle --border --ansi --reverse --height 40%'
-alias _FZF_H40_M='fzf --cycle --border --ansi --reverse -m --height 40%'
-alias _FZF_H80='fzf --cycle --border --ansi --reverse --height 80%'
-alias _FZF_H80_M='fzf --cycle --border --ansi --reverse -m --height 80%'
-
-# TBD:fzf - change to vertical style.
-alias previewfile="fzf -m --preview 'bat --terminal-width $((COLUMNS/2-5)) --color \"always\" {} '"
-alias previewdir="fzf -m --preview 'ls --color=\"always\" -lshGg {} '"
+if [ -n "$TMUX" ]; then
+  alias _fm_height_40='fzf-tmux --border -d 40%'
+  alias _fm_height_80='fzf-tmux --border -d 80%'
+else
+  alias _fm_height_40='fzf --border --height 40%'
+  alias _fm_height_80='fzf --border --height 80%'
+fi
 
 treef () {
-    cd $(find ./ -type d | fzf --preview " tree -C -L 3 {} ")
-}
-
-# Function
-_FZF_H40_FileList () {
-    cat "$@" | _FZF_H40
-}
-
-_FZF_H40_M_FileList () {
-    cat "$@" | _FZF_H40_M
-}
-
-_FZF_H80_FileList () {
-    cat "$@" | _FZF_H80
-}
-
-_FZF_H80_M_FileList () {
-    cat "$@" | _FZF_H80_M
+  _folder="$(find ./ -type d | fzf --preview "tree -ifC {} ")"
+  [ -d "$_folder" ] && cd "$_folder"
+  unset _folder
 }
 
 # Load the fzf custom command.
 for fzf_file in $dotfiles_dir/bash_library/bash_fzf/.fzf_*; do
-    # echo "Loading the $fzf_file"
-    [ -f "$fzf_file" ] && [ -r "$fzf_file" ] && source "$fzf_file";
+  # echo "Loading the $fzf_file"
+  [ -f "$fzf_file" ] && [ -r "$fzf_file" ] && source "$fzf_file";
 done;
 unset fzf_file;

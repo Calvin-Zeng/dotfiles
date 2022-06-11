@@ -20,6 +20,8 @@ bind '"\C-b":vi-bWord'
 bind '"\ee": "\C-asudo \C-e"'
 # Insert "help_" when press Alt(escape) + h
 bind '"\eh": "\C-ahelp_\C-e"'
+# Insert "man " when press Alt(escape) + m
+bind '"\em": "\C-aman \C-e"'
 # Insert () when press Alt(escape) + 9
 bind '"\e9": "\x28\x29\e[D"'
 # Insert '' when press Alt(escape) + '
@@ -30,8 +32,16 @@ bind '"\e\x22": "\x22\x22\e[D"'
 bind '"\e\x5B": "\x5B\x5D\e[D"'
 # Insert {} when press Alt(escape) + }
 bind '"\e\x7D": "\x7B\x7D\e[D"'
+# Insert {} when press Alt(escape) + }
+bind '"\e\x60": "\x60\x60\e[D"'
 # Selecting text in the terminal without using the mouse
-bind '"\C-p": "\C-e\C-u xclip -selection clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
+[ $(command -v xclip) ] && bind '"\C-p": "\C-e\C-u xclip -selection clipboard <<"EOF"\n\C-y\nEOF\n\C-y"'
+
+# Alt + b - go up level folder
+bind '"\eb": "..\n"'
+
+# Insert | fzf when press Alt(escape) + f"
+bind '"\ef": "| fzf "'
 
 # Show pre command.
 # bind '"\C-j": "echo "!!""'

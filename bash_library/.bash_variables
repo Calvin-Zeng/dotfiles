@@ -12,4 +12,6 @@ export OPENSSL_AES=$(openssl engine)
 export WANIP=$(timeout --kill-after=5s 2s dig +short txt ch whoami.cloudflare @1.0.0.1)
 export LANIP=$(ifconfig -a | grep -o 'inet6\? \(addr:\)\?\s\?\(\(\([0-9]\+\.\)\{3\}[0-9]\+\)\|[a-fA-F0-9:]\+\)' | awk '{ sub(/inet6? (addr:)? ?/, ""); print }')
 
+export ROWS=$(tput lines)
+
 # TOUCHPAD=$(xinput list | grep Touchpad | awk '{print $5}' | sed 's/id\=//g')
