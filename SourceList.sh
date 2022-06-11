@@ -74,3 +74,8 @@ T_Name[16]="config"
 S_Name[17]="xfce/.config/xfce4/xfconf/xfce-perchannel-xml/xfce4-keyboard-shortcuts.xml"
 T_Path[17]="$HOME/.config/xfce4/xfconf/xfce-perchannel-xml/"
 T_Name[17]="xfce4-keyboard-shortcuts.xml"
+
+# bat
+S_Name[17]="bat/.config/bat"
+T_Path[17]="$HOME/.config/"
+T_Name[17]="bat"
