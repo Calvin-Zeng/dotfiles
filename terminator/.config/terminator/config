@@ -11,6 +11,7 @@
   switch_to_tab_5 = None
   hide_window = None
   edit_tab_title = None
+  help = None
 [profiles]
   [[default]]
     background_color = "#353535"

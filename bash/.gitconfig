@@ -12,7 +12,7 @@
 [difftool "icdiff"]
 	cmd = icdiff -N "$LOCAL" "$REMOTE"
 [icdiff]
-	options = --line-numbers
+	options = --line-numbers --cols="${COLUMNS}"
 [merge]
 	tool = meld
 [mergetool "meld"]

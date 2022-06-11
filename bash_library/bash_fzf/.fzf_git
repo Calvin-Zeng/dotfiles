@@ -1,18 +1,29 @@
-alias _FZF_GIT_BR='git branch | _FZF_H40 | tr -d '\''[:space:]'\'''
-alias _FZF_GIT_LOG='git log --oneline | _FZF_H40_M | awk '\''{print $1 }'\'' | tr '\''\n'\'' '\'' '\'''
-# git diff --name-only --cached
+if [ -n "$TMUX" ]; then
+  [ $(command -v icdiff) ] && \
+  alias _fm_height_80_giticdf='fzf-tmux --border -d $((ROWS-5)) --preview-window=down:80% --preview="git icdiff {+2}"' ||\
+  alias _fm_height_80_giticdf='fzf-tmux --border -d $((ROWS-5)) --preview-window=down:80% --preview="git diff --color {+2}"'
+  [ $(command -v icdiff) ] && \
+  alias _fm_height_80_giticdf_staged='fzf-tmux --border -d $((ROWS-5)) --preview-window=down:80% --preview="git icdiff --staged {+1}"' ||\
+  alias _fm_height_80_giticdf_staged='fzf-tmux --border -d $((ROWS-5)) --preview-window=down:80% --preview="git diff --staged --color {+1}"'
+else
+  [ $(command -v icdiff) ] && \
+  alias _fm_height_80_giticdf='fzf --border --height $((ROWS-5)) --preview-window=down:80% --preview="git icdiff {+2}"' ||\
+  alias _fm_height_80_giticdf='fzf --border --height $((ROWS-5)) --preview-window=down:80% --preview="git diff --color {+2}"'
+  [ $(command -v icdiff) ] && \
+  alias _fm_height_80_giticdf_staged='fzf --border --height $((ROWS-5)) --preview-window=down:80% --preview="git icdiff --staged {+1}"' ||\
+  alias _fm_height_80_giticdf_staged='fzf --border --height $((ROWS-5)) --preview-window=down:80% --preview="git diff --staged --color {+1}"'
+fi
+
+alias gitl_status='git status --short | _fm_height_80_giticdf | awk '\''{print $2}'\'''
+alias gitl_staged='git diff --name-only --cached | _fm_height_80_giticdf_staged'
+alias gitl_stash='git sta list | _fm_height_40 | cut -d':' -f1'
+alias gitl_log='git log --oneline --color --format="%Cred%h%Creset - %Cblue%cs%Creset %s - " --color | _fm_height_40 | awk '\''{print $1 }'\'' | tr '\''\n'\'' '\'' '\'''
+alias gitl_branch='git branch -a | _fm_height_40 | tr -d '\''[:space:]'\'' | tr -d '\''*'\'''
+alias gitl_tag='git tag -n | _fm_height_40 | awk '\''{print $1}'\'''
+
+alias _gitl_log_file='_tmp=$(gitl_log); git log --color -1 $_tmp --stat --format="" | fzf | awk '\''{print $1}'\'' | tr '\''\n'\'' '\'' '\'''
+alias gitl_log_file='git log -1 -p $_tmp $(_gitl_log_file); unset _tmp'
+
+# Alternate commands list.
 # git ls-files --modified
 # git ls-files --others
-alias _FZF_GIT_STATUS_SHORT="git status --short | fzf --multi --color=dark --cycle --border --ansi --preview-window=up:70% --preview=\"git diff --color {+2}\" | awk '{print \$2}'"
-alias _FZF_GIT_DIFF_NAME="git diff --name-only | fzf --multi --color=dark --cycle --border --ansi --preview-window=up:70% --preview=\"git diff --color {+1}\""
-alias _FZF_GIT_DIFF_CACHED_NAME="git diff --name-only --cached | fzf --multi --color=dark --cycle --border --ansi --preview-window=up:70% --preview=\"git diff --color --staged {+1}\""
-
-alias git_br_del='_FZF_GIT_BR | xargs --no-run-if-empty git branch -d'
-alias git_co_br='_FZF_GIT_BR | xargs --no-run-if-empty git checkout'
-alias git_co_log='_FZF_GIT_LOG | xargs --no-run-if-empty git checkout'
-alias git_co_file='_FZF_GIT_DIFF_NAME | xargs --no-run-if-empty git checkout'
-alias git_ad='_FZF_GIT_STATUS_SHORT | xargs --no-run-if-empty git add'
-alias git_gen_patch='git diff $(_FZF_GIT_LOG) --no-color'
-alias git_gen_no_commit_patch='git diff -- . '\"':(exclude).config'\"' --no-color'
-alias git_btoaplus='_FZF_GIT_DIFF_CACHED_NAME | xargs --no-run-if-empty git reset HEAD'
-alias git_ctob='git reset --soft HEAD^'
