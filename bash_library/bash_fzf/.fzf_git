@@ -17,12 +17,25 @@ fi
 alias gitl_status='git status --short | _fm_height_80_giticdf | awk '\''{print $2}'\'''
 alias gitl_staged='git diff --name-only --cached | _fm_height_80_giticdf_staged'
 alias gitl_stash='git sta list | _fm_height_40 | cut -d':' -f1'
-alias gitl_log='git log --oneline --color --format="%Cred%h%Creset - %Cblue%cs%Creset %s - " --color | _fm_height_40 | awk '\''{print $1 }'\'' | tr '\''\n'\'' '\'' '\'''
+alias gitl_log='git log --oneline --color --format="%Cred%h%Creset - %Cblue%cs%Creset %s" | _fm_height_40 | awk '\''{print $1 }'\'' | tr '\''\n'\'' '\'' '\'''
 alias gitl_branch='git branch -a | _fm_height_40 | tr -d '\''[:space:]'\'' | tr -d '\''*'\'''
 alias gitl_tag='git tag -n | _fm_height_40 | awk '\''{print $1}'\'''
 
-alias _gitl_log_file='_tmp=$(gitl_log); git log --color -1 $_tmp --stat --format="" | fzf | awk '\''{print $1}'\'' | tr '\''\n'\'' '\'' '\'''
-alias gitl_log_file='git log -1 -p $_tmp $(_gitl_log_file); unset _tmp'
+# Show multiple files changed detail by specific commit.
+alias _gitl_log_file='git log --color -1 $_tmp --stat --format="" |
+                        fzf |
+                        awk '\''{print $1}'\'' | tr '\''\n'\'' '\'' '\'''
+alias gitl_log_file='export _tmp=$(gitl_log);
+                      git log -1 -p $_tmp $(_gitl_log_file)'
+
+# Show multiple files changed detail by select files in one commit.
+alias _gitl_file_log='export _tmp_file=$(git ls-tree --name-only -r HEAD |
+                        fzf | tr '\''\n'\'' '\'' '\'');
+                      git log --oneline --color --format="%Cred%h%Creset - %Cblue%cs%Creset %s" $_tmp_file'
+alias gitl_file_log='_gitl_file_log |
+                      $(which fzf) --preview-window=down:80% --preview="git log -1 -p --color --diff-filter=ACDMR --stat {+1} $_tmp_file " |
+                      awk '\''{print $1}'\'' |
+                      xargs --no-run-if-empty -p  -I {} git log -1 -p --color --diff-filter=ACDMR --stat {} $_tmp_file'
 
 # Alternate commands list.
 # git ls-files --modified
