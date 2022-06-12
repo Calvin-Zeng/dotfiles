@@ -7,6 +7,11 @@ bash_library/bat.bash
 # Ignore the Backup folder change.
 backup/*
 
+# vim/{autoload, colors, plugged} folder.
+vim/.vim/autoload
+vim/.vim/colors
+vim/.vim/plugged
+
 # Some secret files
 bash/.extra
 bash/.fwknoprc

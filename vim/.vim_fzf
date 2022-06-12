@@ -1,0 +1,2 @@
+" If installed using git
+set rtp+=~/.fzf

@@ -28,6 +28,7 @@ packages_list=(\
   subversion \
   terminator \
   tmux \
+  vim \
   xfce \
 )
 

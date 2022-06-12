@@ -6,7 +6,7 @@ akf () {
       *) break;;
     esac
   done
-  _folder=$(ack -l $opt "$1" | fzf --preview "bat --terminal-width $COLUMNS --color \"always\" {} | ack $opt --context=10 \"$1\"")
+  _folder=$(ack -l $opt "$1" | $(which fzf) --preview "bat --terminal-width $COLUMNS --color \"always\" {} | ack $opt --context=10 \"$1\"")
   [ -d "$_folder" ] && cd "$_folder"
   unset args opt _folder
 }
@@ -19,7 +19,7 @@ gpf () {
       *) break;;
     esac
   done
-  _folder=$(grep -Inrl $opt "$1" | fzf --preview "bat --terminal-width $COLUMNS --color \"always\" {} | grep $opt --color=\"always\" -C 10 \"$1\"")
+  _folder=$(grep -Inrl $opt "$1" | $(which fzf) --preview "bat --terminal-width $COLUMNS --color \"always\" {} | grep $opt --color=\"always\" -C 10 \"$1\"")
   [ -d "$_folder" ] && cd "$_folder"
   unset args opt _folder
 }

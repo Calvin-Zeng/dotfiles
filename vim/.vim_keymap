@@ -1,0 +1,60 @@
+" Enable tagbar
+nmap <F8> :TagbarToggle<CR>
+
+" Insert time.
+imap <F2> <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
+
+" Execute command.
+map <F2> :r !
+
+" Find & replace
+map <s-f> :%s/s/re/gc
+
+" Find & replace and increase index
+map <s-f><s-p> :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
+
+" Find next.
+map <F3> n
+
+" Copy.
+map <C-c> y
+
+" Cut.
+map <C-x> d
+
+" Convert text plain to hex and back again.
+map <C-h> :%!xxd<CR>
+map <C-h><C-r> :%!xxd -r<CR>
+
+"map <F4> :set hls!<BAR>set hls?<CR>
+map <s-c> :let @/ = ""<CR>
+
+" :nmap <C-c><C-c> :!gcc -Wall % -o %:r.out<CR>
+
+" Use Tab to indent line
+nmap <tab> v>
+nmap <s-tab> v<
+vmap <tab> >gv
+vmap <s-tab> <gv
+
+" Useful bubble text normal mapping for arrow keys.
+" http://vimcasts.org/episodes/bubbling-text/
+nnoremap <C-UP> ddkP 
+nnoremap <C-DOWN> ddp
+nnoremap <C-D> Vyp
+nnoremap <C-a> <Esc>ggVG
+
+vnoremap <C-DOWN> xp`[V`]
+vnoremap <C-UP> xkP`[V`]
+vnoremap <C-D> Vyjp`[V`]
+vnoremap <C-a> <Esc>ggVG
+
+" Auto fill
+" Note: Use 'jiangmiao/auto-pairs' to replace
+" inoremap ( ()<Esc>i
+" inoremap [ []<Esc>i
+" inoremap {<CR> {<CR>}<Esc>ko
+" inoremap {{ {}<ESC>i
+" inoremap " ""<Esc>i
+" inoremap ' ''<Esc>i
+" inoremap if if() {<CR><LF>}<Esc>i
