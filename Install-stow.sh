@@ -27,6 +27,7 @@ packages_list=(\
   sublime-text \
   subversion \
   terminator \
+  tmux \
   xfce \
 )
 

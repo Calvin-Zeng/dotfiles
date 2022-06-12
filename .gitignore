@@ -13,3 +13,4 @@ bash/.fwknoprc
 mc/.config/mc/hotlist
 mc/.config/mc/hotlist.bak
 mc/.local/share/mc/history
+tmux/.tmux/resurrect/

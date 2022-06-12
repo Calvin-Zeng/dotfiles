@@ -7,3 +7,6 @@
 [submodule "sublime-text/.config/sublime-text-3/Packages/User"]
 	path = sublime-text/.config/sublime-text-3/Packages/User
 	url = https://github.com/Calvin-Zeng/sublime-config.git
+[submodule "tmux/.tmux/plugins/tmux-resurrect"]
+	path = tmux/.tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
