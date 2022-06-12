@@ -42,3 +42,4 @@
 	sh = show
 	rl = rev
 	rem = remote
+	bd = bundle

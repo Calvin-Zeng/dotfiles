@@ -149,6 +149,28 @@ echo -e $"
     ${Yellow} git remote update ${Color_Off}
 "
     ;;
+    bd|bundle)
+echo -e $"
+    - ${Green} Create a repository to bundle file. ${Color_Off}
+    ${Yellow} git bundle create ../x.bundle master HEAD ${Color_Off}
+
+    - ${Green} Create a repository to bundle file which only contain newly added commits. ${Color_Off}
+    ${Yellow} git bundle create ../x_a_b.bundle v2 a02da0e3..a2492538 HEAD ${Color_Off}
+
+    - ${Green} Create a repository to bundle file by tag. ${Color_Off}
+    ${Yellow} git bundle create ../x.bundle last-bundled..master HEAD ${Color_Off}
+    ${Yellow} git tag -f last-bundled master ${Color_Off}
+
+    - ${Green} Clone a repository from bundle file. ${Color_Off}
+    ${Yellow} git cl x.bundle master ${Color_Off}
+
+    - ${Green} Fetch a branch of repository to an exist repository folder. ${Color_Off}
+    ${Yellow} git fe ../x.bundle branch1:branch ${Color_Off}
+
+    - ${Green} Update the repository folder by bundle file. ${Color_Off}
+    ${Yellow} git pl ../x.bundle ${Color_Off}
+"
+    ;;
     *)
 echo -e $"
 ${Yellow}Get started with Git:${Color_Off}
