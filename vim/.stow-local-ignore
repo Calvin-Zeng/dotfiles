@@ -1,5 +1,9 @@
+.vim_easymotion
+.vim_easycomplete
 .vim_fzf
 .vim_keymap
 .vim_misc
 .vim_nerdtree
+.vim_tabular
 .vim_theme_Molokai
+.vim_ultisnips

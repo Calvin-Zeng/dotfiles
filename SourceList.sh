@@ -82,10 +82,10 @@ T_Path[18]="$HOME"
 T_Name[18]=".tmux.conf"
 
 # vim
-S_Name[19]="bash/vim/.vimrc"
+S_Name[19]="vim/.vimrc"
 T_Path[19]="$HOME"
 T_Name[19]=".vimrc"
 
-S_Name[20]="bash/vim/.vim"
+S_Name[20]="vim/.vim"
 T_Path[20]="$HOME"
 T_Name[20]=".vim"

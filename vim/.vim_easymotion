@@ -1,0 +1,34 @@
+" Reference:
+" https://github.com/easymotion/vim-easymotion/blob/master/doc/easymotion.txt
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Set the default leader
+map s <Plug>(easymotion-prefix)
+
+" word motions
+map sw <Plug>(easymotion-w)
+
+" JK motions: Line motions
+map sj <Plug>(easymotion-j)
+map sk <Plug>(easymotion-k)
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Jump to anywhere in current line.
+map sl <Plug>(easymotion-lineanywhere)
+
+" Repeat last motion
+map s. <Plug>(easymotion-repeat)
+map sp <Plug>(easymotion-prev)
+map sn <Plug>(easymotion-next)
+
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+

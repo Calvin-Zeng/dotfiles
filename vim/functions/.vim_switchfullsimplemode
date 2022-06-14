@@ -1,0 +1,23 @@
+" Switch the simple / copy mode.
+map <C-f> :call SwitchFullSimpleMode()<CR>
+map! <C-f> <Esc>:call SwitchFullSimpleMode()<CR>
+function SwitchFullSimpleMode()
+    if (&mouse == "a")
+        let &mouse = ""
+        set nocindent
+        set nonumber
+        set wrap
+        :TagbarClose
+        :NERDTreeClose
+        echo "Switch to simple mode.(nomouse, nonumber, nocindent, wrap, NERDTreeClose, TagbarClose)"
+    else
+        let &mouse = "a"
+        set cindent
+        set number
+        " set nowrap
+        set wrap
+        " :TagbarToggle
+        " :NERDTreeToggle
+        echo "Switch to full mode.(mouse, number, cindent, nowrap, NERDTreeToggle, TagbarToggle)"
+    endif
+endfunction
