@@ -6,9 +6,16 @@ akf () {
       *) break;;
     esac
   done
-  _folder=$(ack -l $opt "$1" | $(which fzf) --preview "bat --terminal-width $COLUMNS --color \"always\" {} | ack $opt --context=10 \"$1\"")
-  [ -d "$_folder" ] && cd "$_folder"
-  unset args opt _folder
+  _tmp=$(ack -l $opt "$1" | $(which fzf) --preview "bat --terminal-width $((COLUMNS-5)) --color \"always\" {} | ack $opt --context=10 \"$1\"")
+  [ -d "$_tmp" ] && cd "$_tmp"
+  if [ -f "$_tmp" ]; then
+    if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ] && [ $(command -v subl) ]; then
+      subl "$_tmp"
+    else
+      vi "$_tmp"
+    fi
+  fi
+  unset args opt _tmp
 }
 
 gpf () {
@@ -19,7 +26,14 @@ gpf () {
       *) break;;
     esac
   done
-  _folder=$(grep -Inrl $opt "$1" | $(which fzf) --preview "bat --terminal-width $COLUMNS --color \"always\" {} | grep $opt --color=\"always\" -C 10 \"$1\"")
-  [ -d "$_folder" ] && cd "$_folder"
-  unset args opt _folder
+  _tmp=$(grep -Inrl $opt "$1" | $(which fzf) --preview "bat --terminal-width $((COLUMNS-5)) --color \"always\" {} | grep $opt --color=\"always\" -C 10 \"$1\"")
+  [ -d "$_tmp" ] && cd "$_tmp"
+  if [ -f "$_tmp" ]; then
+    if [ ! -n "$SSH_CLIENT" ] && [ ! -n "$SSH_TTY" ] && [ $(command -v subl) ]; then
+      subl "$_tmp"
+    else
+      vi "$_tmp"
+    fi
+  fi
+  unset args opt _tmp
 }

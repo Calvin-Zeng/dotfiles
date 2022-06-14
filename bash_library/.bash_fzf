@@ -4,7 +4,7 @@
 # If the terminal is in the tmux session then use fzf-tmux.
 [ -n "$TMUX" ] && alias fzf='fzf-tmux'
 
-FZF_DEFAULT_OPTS="-m --ansi --preview '[ -f {} ] && bat --terminal-width ${COLUMNS} --color \"always\" {} || tree -ifCL 2 {}' "
+FZF_DEFAULT_OPTS="-m --ansi --preview '[ -f {} ] && bat --terminal-width $((COLUMNS-5)) --color \"always\" {} || tree -ifCL 2 {}' "
 FZF_DEFAULT_OPTS+="--preview-window='up:80%:hidden' "
 FZF_DEFAULT_OPTS+="--bind='"
 # Ctrl + d - reload to the folder list
