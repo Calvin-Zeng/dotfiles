@@ -42,6 +42,10 @@ fi
 # https://github.com/honza/vim-snippets
 # [ ! -d "plugged/vim-snippets" ] && git clone https://github.com/honza/vim-snippets.git plugged/vim-snippets
 
+# plugin - vim-visual-multi
+https://github.com/mg979/vim-visual-multi
+[ ! -d "plugged/vim-visual-multi" ] && git clone https://github.com/mg979/vim-visual-multi.git plugged/vim-visual-multi
+
 # Theme - molokai
 # https://github.com/tomasr/molokai
 if [ ! -f "colors/molokai.vim" ]; then

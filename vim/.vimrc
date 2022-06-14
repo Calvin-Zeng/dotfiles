@@ -9,11 +9,14 @@ Plug 'godlygeek/tabular'
 Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'jayli/vim-easycomplete'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 
 "Color Scheme:
 source $HOME/dotfiles/vim/.vim_theme_Molokai
+
+let mapleader = '\'
 
 " Plugins setting
 source $HOME/dotfiles/vim/.vim_fzf
@@ -22,6 +25,7 @@ source $HOME/dotfiles/vim/.vim_tabular
 source $HOME/dotfiles/vim/.vim_easymotion
 source $HOME/dotfiles/vim/.vim_easycomplete
 source $HOME/dotfiles/vim/.vim_ultisnips
+source $HOME/dotfiles/vim/.vim_visual-multi
 
 " Previous state when open file.
 source $HOME/dotfiles/vim/functions/.vim_previoustate
