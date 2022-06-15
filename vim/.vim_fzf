@@ -1,2 +1,4 @@
 " If installed using git
 set rtp+=~/.fzf
+
+nnoremap <Leader><C-p> :FZF<CR>

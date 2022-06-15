@@ -31,6 +31,12 @@ source $HOME/dotfiles/vim/.vim_visual-multi
 source $HOME/dotfiles/vim/functions/.vim_previoustate
 " Switch the simple / copy mode.
 source $HOME/dotfiles/vim/functions/.vim_switchfullsimplemode
+" Auto save / restore the session by path
+" Then use those cmd to exit vim.
+"   :wa - save all tabs / unsaved buffers
+"   :xa/:wqa - save all tabs / unsaved buffers and exit Vim
+"   :qa - exit vim (will warn if unsaved buffers exist)
+source $HOME/dotfiles/vim/functions/.vim_autosession
 
 " others
 source $HOME/dotfiles/vim/.vim_keymap

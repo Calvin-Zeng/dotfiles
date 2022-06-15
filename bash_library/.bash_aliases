@@ -255,3 +255,6 @@ alias gpi='grep -Iinr'
 # Shorten the ack.
 alias ak='ack -H'
 alias aki='ack -Hi'
+
+# If the local $HOME has personally compiled VIM, then use local build version.
+[ -f "$HOME/local/bin/vim" ] && alias vi=$HOME'/local/bin/vim'

@@ -11,6 +11,7 @@ backup/*
 vim/.vim/autoload
 vim/.vim/colors
 vim/.vim/plugged
+vim/.vim/sessions
 
 # Some secret files
 bash/.extra
