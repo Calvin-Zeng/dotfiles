@@ -2,3 +2,11 @@
 set rtp+=~/.fzf
 
 nnoremap <Leader><C-p> :FZF<CR>
+nnoremap <Leader><C-h> :History:<CR>
+
+command! GITDIFF call fzf#run(fzf#wrap({'source': 'git ls-files --modified'}))
+
+" let g:fzf_preview_window = ['right:50%', 'ctrl-/']
+let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
+
+" let g:fzf_command_prefix = 'FZF'

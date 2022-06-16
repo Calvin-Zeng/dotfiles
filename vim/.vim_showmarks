@@ -1,0 +1,15 @@
+" 4. Mappings                                                *showmarks-mappings*
+" 
+" The following mappings are setup by default:
+" 
+"   <Leader>mt   - Toggles ShowMarks on and off.
+"   <Leader>mo   - Forces ShowMarks on.
+"   <Leader>mh   - Clears the mark at the current line.
+"   <Leader>ma   - Clears all marks in the current buffer.
+"   <Leader>mm   - Places the next available mark on the current line.
+" 
+" (see |mapleader| for how to setup the mapleader variable.)
+
+let g:showmarks_include="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ[]0123456789"
+let g:showmarks_textlower=">"
+let g:showmarks_textupper="{"
