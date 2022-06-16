@@ -8,6 +8,7 @@ FZF_DEFAULT_OPTS="-m --ansi --preview '[ -f {} ] && bat --terminal-width $((COLU
 FZF_DEFAULT_OPTS+="--preview-window='up:80%:hidden' "
 FZF_DEFAULT_OPTS+="--bind='"
 # Ctrl + d - reload to the folder list
+FZF_DEFAULT_OPTS+="ctrl-j:reload(find . \( -name \".git\" -o -name \".svn\" \) -prune -o -print),"
 FZF_DEFAULT_OPTS+="ctrl-d:reload(find . -type d),"
 FZF_DEFAULT_OPTS+="ctrl-f:reload(cat /tmp/fzf_list_$(date +"%Y-%m-%d")),"
 FZF_DEFAULT_OPTS+="ctrl-h:reload(find /tmp/fzf_list_*),"
