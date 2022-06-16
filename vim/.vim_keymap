@@ -3,9 +3,17 @@
 nnoremap <Leader><C-s> :mksession! 
 nnoremap <Leader><C-r> :source 
 
+" New a empty file on tab
+nnoremap <Leader><C-n> :tabnew<CR>
+
 " Convert text plain to hex and back again.
-map <C-h> :%!xxd<CR>
+map <C-h><C-h> :%!xxd<CR>
 map <C-h><C-r> :%!xxd -r<CR>
+
+" Navigate to definition / Jump prev
+" nnoremap <c-t><c-t> :ltag  <bar>lwindow<S-Left><Left>
+nnoremap <c-t><c-t> :tselect<CR>
+" nnoremap <c-t><c-b> <C-t>
 
 " Useful bubble text normal mapping for arrow keys.
 " http://vimcasts.org/episodes/bubbling-text/
@@ -48,6 +56,9 @@ map <F2> :r !
 
 " Enable tagbar
 nmap <F8> :TagbarToggle<CR>
+
+" Navigate to definition
+nnoremap <F12> <C-]>
 
 " -------- Other --------
 " Use Tab to indent line
