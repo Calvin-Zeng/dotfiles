@@ -5,6 +5,7 @@ functions
 .vim_keymap
 .vim_misc
 .vim_nerdtree
+.vim_showmarks
 .vim_tabular
 .vim_theme_Molokai
 .vim_ultisnips

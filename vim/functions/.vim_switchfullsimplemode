@@ -9,13 +9,15 @@ function SwitchFullSimpleMode()
         set wrap
         :TagbarClose
         :NERDTreeClose
+        :ShowMarksToggle
         echo "Switch to simple mode.(nomouse, nonumber, nocindent, wrap, NERDTreeClose, TagbarClose)"
     else
         let &mouse = "a"
         set cindent
         set number
-        " set nowrap
         set wrap
+        :ShowMarksOn
+        " set nowrap
         " :TagbarToggle
         " :NERDTreeToggle
         echo "Switch to full mode.(mouse, number, cindent, nowrap, NERDTreeToggle, TagbarToggle)"

@@ -1,0 +1,19 @@
+diff --git a/plugin/showmarks.vim b/plugin/showmarks.vim
+index affd240..16f84cc 100644
+--- a/plugin/showmarks.vim
++++ b/plugin/showmarks.vim
+@@ -139,10 +139,10 @@ if g:showmarks_enable == 1
+ endif
+ 
+ " Highlighting: Setup some nice colours to show the mark positions.
+-hi default ShowMarksHLl ctermfg=darkblue ctermbg=blue cterm=bold guifg=blue guibg=lightblue gui=bold
+-hi default ShowMarksHLu ctermfg=darkblue ctermbg=blue cterm=bold guifg=blue guibg=lightblue gui=bold
+-hi default ShowMarksHLo ctermfg=darkblue ctermbg=blue cterm=bold guifg=blue guibg=lightblue gui=bold
+-hi default ShowMarksHLm ctermfg=darkblue ctermbg=blue cterm=bold guifg=blue guibg=lightblue gui=bold
++hi default ShowMarksHLl ctermfg=darkblue ctermbg=232 cterm=bold guifg=blue guibg=lightblue gui=bold
++hi default ShowMarksHLu ctermfg=darkblue ctermbg=232 cterm=bold guifg=blue guibg=lightblue gui=bold
++hi default ShowMarksHLo ctermfg=darkblue ctermbg=232 cterm=bold guifg=blue guibg=lightblue gui=bold
++hi default ShowMarksHLm ctermfg=darkblue ctermbg=232 cterm=bold guifg=blue guibg=lightblue gui=bold
+ 
+ " Function: IncludeMarks()
+ " Description: This function returns the list of marks (in priority order) to

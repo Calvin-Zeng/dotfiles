@@ -13,6 +13,19 @@ download_plugin_file() {
   fi
 }
 
+patch_file() {
+  # exit on error
+  set -e
+  file=$1
+  if [ -f $file ] & [ -r $file ]; then
+    # echo "$file"
+    patch -p1 --dry-run < $file
+    patch -p1 < $file
+  fi
+  unset file
+  set +e
+}
+
 # plugin - vim-plug
 # https://github.com/junegunn/vim-plug
 download_plugin_file "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" autoload plug.vim
@@ -31,3 +44,7 @@ download_git_repo "https://github.com/SirVer/ultisnips.git" plugged/ultisnips
 download_git_repo "https://github.com/jayli/vim-easycomplete.git" plugged/vim-easycomplete
 # download_git_repo "https://github.com/honza/vim-snippets.git" plugged/vim-snippets
 download_git_repo "https://github.com/mg979/vim-visual-multi.git" plugged/vim-visual-multi
+download_git_repo "https://github.com/junegunn/fzf.vim.git" plugged/fzf.vim
+
+download_git_repo "https://github.com/vim-scripts/ShowMarks.git" plugged/ShowMarks
+cd plugged/ShowMarks && patch_file ../../plugin-showMarks_ctermbg.patch

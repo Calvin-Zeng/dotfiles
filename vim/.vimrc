@@ -2,6 +2,7 @@
 call plug#begin()
 
 Plug '~/.fzf'
+Plug 'junegunn/fzf.vim'
 Plug 'preservim/nerdtree'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
@@ -10,6 +11,7 @@ Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'jayli/vim-easycomplete'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'vim-scripts/ShowMarks'
 
 call plug#end()
 
@@ -26,6 +28,7 @@ source $HOME/dotfiles/vim/.vim_easymotion
 source $HOME/dotfiles/vim/.vim_easycomplete
 source $HOME/dotfiles/vim/.vim_ultisnips
 source $HOME/dotfiles/vim/.vim_visual-multi
+source $HOME/dotfiles/vim/.vim_showmarks
 
 " Previous state when open file.
 source $HOME/dotfiles/vim/functions/.vim_previoustate
