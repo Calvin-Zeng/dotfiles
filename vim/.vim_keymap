@@ -33,26 +33,27 @@ nnoremap <c-t><c-t> :tselect<CR>
 " Use Tab to indent line
 nmap <s-tab> v<
 
-" Find & replace
-map <s-f> :%s/s/re/gc
+" Find & Replace
+map <s-f><s-r> :%s/s/re/gc
 
 " Find & replace and increase index
 map <s-f><s-p> :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
 
 " Clear the search highlight.
-map <s-c> :let @/ = ""<CR>
+map <s-f><s-c> :let @/ = ""<CR>
 
+" preview / next tab
 nnoremap <silent> <s-q> :tabp<CR>
 nnoremap <silent> <s-w>  :tabn<CR>
 
 " -------- Function key --------
-" Insert time.
-imap <F2> <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
+" Insert time. Note: replace with easycomplete
+" imap <F2> <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
 
 " Execute command.
 map <F2> :r !
 
-"map <F4> :set hls!<BAR>set hls?<CR>
+" map <F4> :set hls!<BAR>set hls?<CR>
 
 " Enable tagbar
 nmap <F8> :TagbarToggle<CR>
