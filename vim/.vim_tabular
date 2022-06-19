@@ -8,10 +8,10 @@ autocmd VimEnter * if exists(":Tabularize") |
  \ endif
 
 " Auto align the '|' and '='
-inoremap <silent> <Bar> <Bar><Esc>:call <SID>align_dat()<CR>a
+inoremap <silent> <Bar> <Bar><Esc>:call <SID>align_bar()<CR>a
 inoremap <silent> = =<Esc>:call <SID>align_semicolon()<CR>a
 
-function! s:align_dat()
+function! s:align_bar()
   let p = '^\s*|\s.*\s|\s*$'
   if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
     let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))

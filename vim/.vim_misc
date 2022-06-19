@@ -7,7 +7,9 @@ set t_Co=256
 
 " Set tag file path for ctags.
 " Use vim-ctags before type command "ctags -f .ctags -R ./" in source code directory.
-set tags=.tags
+" set tags=./tags,tags;
+set tags=tags
+set tags+=.tags
 
 " Enable the backspace in insert mode, compatible with version 5.4 and earlier.
 set backspace=indent,eol,start

@@ -11,7 +11,7 @@ map <C-h><C-h> :%!xxd<CR>
 map <C-h><C-r> :%!xxd -r<CR>
 
 " Navigate to definition / Jump prev
-" nnoremap <c-t><c-t> :ltag  <bar>lwindow<S-Left><Left>
+nnoremap <c-t><c-l> :ltag  <bar>lwindow<S-Left><Left>
 nnoremap <c-t><c-t> :tselect<CR>
 " nnoremap <c-t><c-b> <C-t>
 

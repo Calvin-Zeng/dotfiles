@@ -59,6 +59,7 @@ cd bootstrap_script
 ./Install_grv.sh
 ./Install_icdiff.sh
 ./Install_sublime.sh
+./Install_vim.sh
 
 cd bootstrap_script/Install_tmux.sh/
 ./tmux_local_install.sh
