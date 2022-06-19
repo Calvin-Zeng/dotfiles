@@ -1,0 +1,21 @@
+-R
+-f .ctags
+
+--fields=+Saim
+
+--c-kinds=+lpx
+--c++-kinds=+lpx
+
+--extra=+q
+
+--exclude=ctags
+--exclude=.ctags
+--exclude=TAGS
+--exclude=.cvs/*
+--exclude=*/.cvs/*
+--exclude=.svn/*
+--exclude=*/.svn/*
+--exclude=.git/
+--exclude=*/.git/*
+--exclude=images/*
+--exclude=*/images/*

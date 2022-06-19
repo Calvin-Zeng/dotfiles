@@ -12,12 +12,12 @@ fi
 
 # some more ls aliases
 # alias ll='ls -alF'
-alias ll='ls -lsaF'
+alias ll='ls -lsaFh'
 alias lll='ll --color | less -r'
 alias la='ls -A'
 alias l='ls -CF'
-alias lsd='ls -l | grep '^d''  # Or: ls -d */
-alias lf='ls -l | egrep -v '^d''
+alias lsd='ls -lh | grep '^d''  # Or: ls -d */
+alias lf='ls -lh | egrep -v '^d''
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
