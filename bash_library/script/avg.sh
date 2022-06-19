@@ -8,14 +8,15 @@
 # SCCS-Id.   :	@(#) avg	1.3 05/07/15
 ##########################################################################
 # Changes
-# 22.06.95 hs	specify the column as argument (0.2)
-# 19.05.96 hs	Allow multiple files, -f and -t option (0.3)
+# 22.06.1995 hs specify the column as argument (0.2)
+# 19.05.1996 hs	Allow multiple files, -f and -t option (0.3)
+# 19.06.2022 hs	fix the getopts -t (0.4)
 # Reference:
 # http://www.shelldorado.com/scripts/cmds/avg.txt
 ##########################################################################
 
 PN=`basename "$0"`			# program name
-VER='1.3'
+VER='1.4'
 
 Col=1					# Column
 Delim=					# Field delimiter
@@ -37,7 +38,7 @@ Msg () {
 Fatal () { Msg "$@"; exit 1; }
 
 #set -- `getopt hf: "$@"`
-while getopts :hf: opt
+while getopts :hf:t: opt
 do
     case "$opt" in
 	f)	Col="$OPTARG";;

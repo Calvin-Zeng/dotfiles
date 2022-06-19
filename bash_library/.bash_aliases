@@ -11,7 +11,6 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # some more ls aliases
-# alias ll='ls -alF'
 alias ll='ls -lsaFh'
 alias lll='ll --color | less -r'
 alias la='ls -A'
@@ -35,6 +34,7 @@ alias 000='chmod 000'
 alias 600='chmod 600'
 alias 644='chmod 644'
 alias 664='chmod 664'
+alias 700='chmod 700'
 alias 755='chmod 755'
 alias 777='chmod 777'
 alias smx='sudo chmod a+x'
@@ -178,8 +178,8 @@ alias aptchangelog='sudo apt-get changelog'
 # Debug & Release in CMAKE
 # Reference:
 # https://stackoverflow.com/questions/7724569/debug-vs-release-in-cmake
-alias cmake_debug='cmake -DCMAKE_BUILD_TYPE=Debug'
-alias cmake_release='cmake -DCMAKE_BUILD_TYPE=Release'
+[ $(command -v cmake) ] && alias cmake_debug='cmake -DCMAKE_BUILD_TYPE=Debug'
+[ $(command -v cmake) ] && alias cmake_release='cmake -DCMAKE_BUILD_TYPE=Release'
 
 # Show all function in *.so
 alias dumpsofunc='readelf -s'
@@ -253,8 +253,11 @@ alias gp='grep -Inr'
 alias gpi='grep -Iinr'
 
 # Shorten the ack.
-alias ak='ack -H'
-alias aki='ack -Hi'
+[ $(command -v ack) ] && alias ak='ack -H'
+[ $(command -v ack) ] && alias aki='ack -Hi'
+
+# Shorten the grep.
+[ $(command -v fdfind) ] && alias fd='fdfind'
 
 # If the local $HOME has personally compiled VIM, then use local build version.
 [ -f "$HOME/local/bin/vim" ] && alias vi=$HOME'/local/bin/vim'
