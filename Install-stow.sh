@@ -23,6 +23,7 @@ confirm() {
 packages_list=(\
   bash \
   bat \
+  fonts \
   mc \
   sublime-text \
   subversion \

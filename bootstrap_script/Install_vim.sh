@@ -18,7 +18,7 @@
 
 script_path=$(readlink -f $0)
 dir_path=$(dirname $script_path)
-work_topdir=/tmp/vim_tmp
+work_dir=/tmp/vim_tmp
 instdir=$HOME/local
 
 needver="8.2"
@@ -83,7 +83,7 @@ while getopts ho opt; do
       fi
       unset url;
       set +o pipefail
-      echo "Download complete, Move all tarball to $work_topdir on offline system."
+      echo "Download complete, Move all tarball to $work_dir on offline system."
       exit 0
       ;;
   esac
@@ -125,12 +125,12 @@ if [ $use_root -eq 1 ]; then
   echo ${sudo_passwd} | sudo -S apt-get -y remove vim vim-runtime gvim
 fi
 
-if test ! -d $work_topdir; then
-    mkdir -p $work_topdir
+if test ! -d $work_dir; then
+    mkdir -p $work_dir
 fi
 
 # Compile vim
-cd "$work_topdir"
+cd "$work_dir"
 echo "$url"
 if tar -tf "$file" 1> /dev/null; then : ; else
   get_file "$url" || exit 1

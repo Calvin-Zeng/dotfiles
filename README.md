@@ -58,6 +58,8 @@ cd bootstrap_script
 ./Install_fzf.sh
 ./Install_grv.sh
 ./Install_icdiff.sh
+./Install_putty.sh
+./Install_smartgit.sh
 ./Install_sublime.sh
 ./Install_vim.sh
 
