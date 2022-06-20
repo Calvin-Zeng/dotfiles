@@ -16,22 +16,22 @@
 #   select python-dev-is-python2 not python-dev
 #   select liblua5.1-0-dev not liblua5.1-dev
 
-SCRIPT_PATH=$(readlink -f $0)
-DIR_PATH=$(dirname $SCRIPT_PATH)
-WORK_TOPDIR=/tmp/vim_tmp
-INSTDIR=$HOME/local
+script_path=$(readlink -f $0)
+dir_path=$(dirname $script_path)
+work_topdir=/tmp/vim_tmp
+instdir=$HOME/local
 
-NEEDVER="8.2"
-PATCHES="1399"
-VIMVER="$(vim --version | head -1 | awk '{print $5}')"
-VIMPATCHES="$(vim --version | awk 'NR==2 {print $2}')"
-VIMPATCHES=${VIMPATCHES#*-}
+needver="8.2"
+patches="1399"
+vimver="$(vim --version | head -1 | awk '{print $5}')"
+vimpatches="$(vim --version | awk 'NR==2 {print $2}')"
+vimpatches=${vimpatches#*-}
 
-VIM_DIR="vim-$NEEDVER.$PATCHES"
-FILE="v$NEEDVER.$PATCHES.tar.gz"
-URL="https://github.com/vim/vim/archive/refs/tags/$FILE"
+vim_dir="vim-$needver.$patches"
+file="v$needver.$patches.tar.gz"
+url="https://github.com/vim/vim/archive/refs/tags/$file"
 
-USE_ROOT=0
+use_root=0
 
 die() {
   echo $1
@@ -72,18 +72,18 @@ while getopts ho opt; do
       exit 0
       ;;
     o)
-      cd "$DIR_PATH"
+      cd "$dir_path"
       check_internet
       [[ $? -eq 1 ]] && die "Check your internet connectivity."
       set -o pipefail
-      echo "$URL"
-      if ! (get_file $URL); then
+      echo "$url"
+      if ! (get_file $url); then
         set +o pipefail
         die "Failed to download with curl and wget"
       fi
-      unset URL;
+      unset url;
       set +o pipefail
-      echo "Download complete, Move all tarball to $WORK_TOPDIR on offline system."
+      echo "Download complete, Move all tarball to $work_topdir on offline system."
       exit 0
       ;;
   esac
@@ -93,13 +93,13 @@ shift `expr ${OPTIND:-1} - 1`
 # refer to https://stackoverflow.com/questions/16989598/bash-comparing-version-numbers
 function version_gt() { test "$(printf '%s\n' "$@" | sort -V | head -n 1)" != "$1"; }
 
-echo "Current the VIM version is $VIMVER.$VIMPATCHES"
-echo "Installing the VIM $NEEDVER.$PATCHES"
+echo "Current the VIM version is $vimver.$vimpatches"
+echo "Installing the VIM $needver.$patches"
 echo "  with    root privilege will install in /usr/local"
 echo "  without root privilege will install in $HOME/local"
 
-if ! version_gt "$NEEDVER.$PATCHES" "$VIMVER.$VIMPATCHES" ; then
-  die "Current VIM version: $VIMVER.$VIMPATCHES is newer than the $NEEDVER.$PATCHES"
+if ! version_gt "$needver.$patches" "$vimver.$vimpatches" ; then
+  die "Current VIM version: $vimver.$vimpatches is newer than the $needver.$patches"
 fi
 
 confirm() {
@@ -112,39 +112,39 @@ confirm() {
 }
 
 confirm "Use root privilege install vim? ([Y]/N): "
-[ $? -eq 0 ] && read -r -p "Enter the root password:" SUDO_PASSWD && USE_ROOT=1 && INSTDIR="/usr/local";
+[ $? -eq 0 ] && read -r -p "Enter the root password:" sudo_passwd && use_root=1 && instdir="/usr/local";
 
-if [ $USE_ROOT -eq 1 ]; then
+if [ $use_root -eq 1 ]; then
   echo "Install depends library of vim."
-  echo ${SUDO_PASSWD} | sudo -S apt-get -y install \
+  echo ${sudo_passwd} | sudo -S apt-get -y install \
   libncurses5-dev libgtk2.0-dev libatk1.0-dev \
   libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev \
   python3-dev ruby-dev lua5.1 liblua5.1-dev libperl-dev git
 
   echo "Remove vim if you have it already."
-  echo ${SUDO_PASSWD} | sudo -S apt-get -y remove vim vim-runtime gvim
+  echo ${sudo_passwd} | sudo -S apt-get -y remove vim vim-runtime gvim
 fi
 
-if test ! -d $WORK_TOPDIR; then
-    mkdir -p $WORK_TOPDIR
+if test ! -d $work_topdir; then
+    mkdir -p $work_topdir
 fi
 
 # Compile vim
-cd "$WORK_TOPDIR"
-echo "$URL"
-if tar -tf "$FILE" 1> /dev/null; then : ; else
-  get_file "$URL" || exit 1
+cd "$work_topdir"
+echo "$url"
+if tar -tf "$file" 1> /dev/null; then : ; else
+  get_file "$url" || exit 1
 fi
 
-rm -rf "$VIM_DIR"
-tar xf "$FILE"
-cd "$VIM_DIR"
+rm -rf "$vim_dir"
+tar xf "$file"
+cd "$vim_dir"
 if test -f src/main.c; then : ; else
   echo "vim source is incomplete" 2>&1
   exit 1
 fi
 
-echo "VIM $NEEDVER.$PATCHES will install in $INSTDIR"
+echo "VIM $needver.$patches will install in $instdir"
 ./configure --with-features=huge \
             --enable-multibyte \
             --enable-rubyinterp=yes \
@@ -156,19 +156,19 @@ echo "VIM $NEEDVER.$PATCHES will install in $INSTDIR"
             --enable-luainterp=yes \
             --enable-gui=gtk2 \
             --enable-cscope \
-            --prefix="$INSTDIR"
+            --prefix="$instdir"
 
-make VIMRUNTIMEDIR="$INSTDIR/share/vim/vim$(echo "$VIMVER" | tr -d '.')" || exit 1
-if [ $USE_ROOT -eq 1 ]; then
-  echo ${SUDO_PASSWD} | sudo -S make install
+make VIMRUNTIMEDIR="$instdir/share/vim/vim$(echo "$vimver" | tr -d '.')" || exit 1
+if [ $use_root -eq 1 ]; then
+  echo ${sudo_passwd} | sudo -S make install
 
   # Set vim as your default editor with update-alternatives.
-  echo ${SUDO_PASSWD} | sudo -S update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
-  echo ${SUDO_PASSWD} | sudo -S update-alternatives --set editor /usr/local/bin/vim
-  echo ${SUDO_PASSWD} | sudo -S update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
-  echo ${SUDO_PASSWD} | sudo -S update-alternatives --set vi /usr/local/bin/vim
+  echo ${sudo_passwd} | sudo -S update-alternatives --install /usr/bin/editor editor /usr/local/bin/vim 1
+  echo ${sudo_passwd} | sudo -S update-alternatives --set editor /usr/local/bin/vim
+  echo ${sudo_passwd} | sudo -S update-alternatives --install /usr/bin/vi vi /usr/local/bin/vim 1
+  echo ${sudo_passwd} | sudo -S update-alternatives --set vi /usr/local/bin/vim
 else
   make install || exit 1
 fi
 
-echo "Install VIM $NEEDVER.$PATCHES - finished successfully."
+echo "Install VIM $needver.$patches - finished successfully."
