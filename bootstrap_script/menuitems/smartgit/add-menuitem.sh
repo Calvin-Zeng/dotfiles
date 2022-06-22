@@ -1,0 +1,1 @@
+../../../../app_images/smartgit/bin/add-menuitem.sh

@@ -70,6 +70,15 @@ cd bootstrap_script/Install_mc.sh/
 ./mc_local_install.sh
 ```
 
+### Applications icons
+
+Some applications has own icon, change to the bootstrap/menuitems/[app_folder], then run the add-menuitem.sh.  
+
+```bash
+cd bootstrap/menuitems/[app_folder]
+./add-menuitem.sh
+```
+
 [License](LICENSE)
 ------------------
 

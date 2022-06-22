@@ -12,6 +12,8 @@ putty_dir="putty-$version"
 file="putty-$version.tar.gz"
 url="https://the.earth.li/~sgtatham/putty/latest/$file"
 
+use_root=0
+
 die() {
   echo $1
   exit 1
@@ -90,6 +92,18 @@ try_wget() {
   fi
 }
 
+confirm() {
+  read -r -p "$1" answer
+  case $answer in
+      ""|[Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer Y or N."; return 1;;
+  esac
+}
+
+confirm "Use root privilege install putty, and change the install path to \"/usr/local/\"? ([Y]/N): "
+[ $? -eq 0 ] && read -r -p "Enter the root password:" sudo_passwd && use_root=1 && instdir="/usr/local";
+
 if test ! -d $work_dir; then
     mkdir -p $work_dir
 fi
@@ -116,7 +130,11 @@ cmake -DCMAKE_INSTALL_PREFIX=$instdir .
 
 # make & make install.
 #make LDFLAGS="-Wl,--no-as-needed,-ldl"
-cmake --build . --target install
+if [ $use_root -eq 1 ];then
+    echo ${sudo_passwd} | sudo -S cmake --build . --target install
+else
+    cmake --build . --target install
+fi
 
 # Date: 2019/10/09 20:17:40
 # Ubuntu 18.04.1 need copy object to unix folder.
