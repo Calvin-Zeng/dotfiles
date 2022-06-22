@@ -3,6 +3,7 @@ nnoremap gd :EasyCompleteGotoDefinition<CR>
 nnoremap rn :EasyCompleteRename<CR>
 nnoremap gb :BackToOriginalBuffer<CR>
 
+let g:easycomplete_lsp_checking = 1
 let g:easycomplete_diagnostics_enable = 1
 let g:easycomplete_signature_enable = 1
 let g:easycomplete_tabnine_enable = 1

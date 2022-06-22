@@ -33,6 +33,10 @@ nnoremap <c-t><c-t> :tselect<CR>
 " Use Tab to indent line
 nmap <s-tab> v<
 
+" Find in files
+map <s-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj **" <bar> lw<CR>
+map <s-f><s-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj %<bar>*<bar>*.c<bar>**<bar>**/*.c<bar>**/* <bar> lw"<S-Left><S-Left><Left>
+
 " Find & Replace
 map <s-f><s-r> :%s/s/re/gc
 

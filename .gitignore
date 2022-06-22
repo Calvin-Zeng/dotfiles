@@ -1,6 +1,7 @@
 *.sublime-project
 *.sublime-workspace
 *.tar*
+*.swp
 
 # Ignore the bat autocomplete file.
 bash_library/bat.bash
