@@ -1,4 +1,7 @@
 #!/bin/bash
+# sudo apt-get install imagemagick
+# cd putty-0.77/icons
+# make
 
 APP_NAME="putty"
 
@@ -7,8 +10,8 @@ die() {
   exit 1
 }
 
-[ -f $HOME/local/bin/$APP_NAME ] && APP_BIN="$HOME/local/bin";
 [ -f /usr/local/bin/$APP_NAME ] && APP_BIN="/usr/local/bin";
+[ -f $HOME/local/bin/$APP_NAME ] && APP_BIN="$HOME/local/bin";
 [ -z $APP_BIN ] && die "Can't found any $APP_NAME path!";
 
 ICON_NAME=simontatham-putty
