@@ -34,17 +34,17 @@ nnoremap <c-t><c-t> :tselect<CR>
 nmap <s-tab> v<
 
 " Find in files
-map <s-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj **" <bar> lw<CR>
-map <s-f><s-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj %<bar>*<bar>*.c<bar>**<bar>**/*.c<bar>**/* <bar> lw"<S-Left><S-Left><Left>
+map ,<c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj **" <bar> lw<CR>
+map ,<c-f><c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj %<bar>*<bar>*.c<bar>**<bar>**/*.c<bar>**/* <bar> lw"<S-Left><S-Left><Left>
+
+" Clear the search text highlight.
+map ,<c-f>c :let @/ = ""<CR>
 
 " Find & Replace
-map <s-f><s-r> :%s/s/re/gc
+map ,<c-f>r :%s/s/re/gc
 
 " Find & replace and increase index
-map <s-f><s-p> :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
-
-" Clear the search highlight.
-map <s-f><s-c> :let @/ = ""<CR>
+map ,<c-f>p :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
 
 " preview / next tab
 nnoremap <silent> <s-q> :tabp<CR>
