@@ -10,3 +10,6 @@
 [submodule "tmux/.tmux/plugins/tmux-resurrect"]
 	path = tmux/.tmux/plugins/tmux-resurrect
 	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "wireshark/.config/wireshark"]
+	path = wireshark/.config/wireshark
+	url = https://github.com/Calvin-Zeng/wireshark_config.git
