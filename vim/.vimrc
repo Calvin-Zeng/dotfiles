@@ -34,6 +34,12 @@ source $HOME/dotfiles/vim/.vim_showmarks
 source $HOME/dotfiles/vim/functions/.vim_previoustate
 " Switch the simple / copy mode.
 source $HOME/dotfiles/vim/functions/.vim_switchfullsimplemode
+" WindowsSwap - https://stackoverflow.com/questions/2586984/how-can-i-swap-positions-of-two-open-files-in-splits-in-vim
+" Move to the window to mark for the swap via ctrl-w movement
+"   Type \mw
+" Move to the window you want to swap
+"   Type \pw
+source /home/calvin/dotfiles/vim/functions/.vim_windowswap
 " Auto save / restore the session by path
 " Then use those cmd to exit vim.
 "   :wa - save all tabs / unsaved buffers

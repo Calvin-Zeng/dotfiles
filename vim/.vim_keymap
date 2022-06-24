@@ -1,10 +1,13 @@
 " -------- Ctrl --------
 " Save/restore the VIM session.
-nnoremap <Leader><C-s> :mksession! 
+nnoremap <Leader><C-s> :w<CR>
 nnoremap <Leader><C-r> :source 
 
 " New a empty file on tab
-nnoremap <Leader><C-n> :tabnew<CR>
+nnoremap <Leader><C-n> :tabnew %<CR>
+
+" Close file
+nnoremap <Leader><C-w> :q<CR>
 
 " Convert text plain to hex and back again.
 map <C-h><C-h> :%!xxd<CR>
@@ -14,6 +17,66 @@ map <C-h><C-r> :%!xxd -r<CR>
 nnoremap <c-t><c-l> :ltag  <bar>lwindow<S-Left><Left>
 nnoremap <c-t><c-t> :tselect<CR>
 " nnoremap <c-t><c-b> <C-t>
+
+" Find in files
+" refer to https://vim.fandom.com/wiki/Find_in_files_within_Vim
+" %      - Current opened files.
+" *      - Current directory.
+" *.c    - Only extension c files.
+" **     - Current/sub Directory recursive.
+" **/*   - Only sub directory.
+" **/*.c - Current directory recursive and only extension c files.
+"map ,<c-f><c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj ** <bar> lw"<S-Left><S-Left><Left>
+
+map ,<c-f> :lvim<CR>
+map ,<c-f>e :lvime<SPACE>
+map ,<c-f><c-f> :lvim<SPACE>
+map ,<c-f>o :lvimo<CR>
+map ,<c-f>oe :lvimoe<SPACE>
+map ,<c-f><c-f>o :lvimo<SPACE>
+cabbrev lvim
+    \ execute "noautocmd
+    \ lvim /<C-R><C-W>/gj
+    \ **"
+    \ <Bar> lw
+    \ <C-Left><C-Left><Left><Left>
+
+cabbrev lvime
+    \ execute "noautocmd
+    \ lvim //gj
+    \ **"
+    \ <Bar> lw
+    \ <C-Left><C-Left><C-Left><C-Left><Right>
+
+cabbrev lvimo
+    \ execute "noautocmd
+    \ lvim /<C-R><C-W>/gj
+    \ **/*<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>"
+    \ <Bar> lw
+    \ <C-Left><C-Left><Left><Left>
+
+cabbrev lvimoe
+    \ execute "noautocmd
+    \ lvim //gj
+    \ **/*<C-R>=(expand("%:e")=="" ? "" : ".".expand("%:e"))<CR>"
+    \ <Bar> lw
+    \ <C-Left><C-Left><C-Left><C-Left><Right>
+
+" Clear the search text highlight.
+map ,<c-f>c :let @/ = ""<CR>
+
+" Disable/Enable the highlight.
+map ,<c-f>h :set hls!<BAR>set hls?<CR>
+
+" Find & Replace
+map ,<c-f>r :%s/s/re/gc
+
+" Find & replace and increase index
+map ,<c-f>p :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
+
+" Open the diff view
+map ,<c-f>d  :diffthis<CR>
+map ,<c-f>do :diffoff<CR>
 
 " Useful bubble text normal mapping for arrow keys.
 " http://vimcasts.org/episodes/bubbling-text/
@@ -33,22 +96,12 @@ nnoremap <c-t><c-t> :tselect<CR>
 " Use Tab to indent line
 nmap <s-tab> v<
 
-" Find in files
-map ,<c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj **" <bar> lw<CR>
-map ,<c-f><c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj %<bar>*<bar>*.c<bar>**<bar>**/*.c<bar>**/* <bar> lw"<S-Left><S-Left><Left>
-
-" Clear the search text highlight.
-map ,<c-f>c :let @/ = ""<CR>
-
-" Find & Replace
-map ,<c-f>r :%s/s/re/gc
-
-" Find & replace and increase index
-map ,<c-f>p :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
-
 " preview / next tab
 nnoremap <silent> <s-q> :tabp<CR>
 nnoremap <silent> <s-w>  :tabn<CR>
+
+" Sync scroll
+map ,<s-s><s-b> :set scb!<BAR>set scb?<CR>
 
 " -------- Function key --------
 " Insert time. Note: replace with easycomplete
@@ -56,8 +109,6 @@ nnoremap <silent> <s-w>  :tabn<CR>
 
 " Execute command.
 map <F2> :r !
-
-" map <F4> :set hls!<BAR>set hls?<CR>
 
 " Enable tagbar
 nmap <F8> :TagbarToggle<CR>
@@ -68,3 +119,13 @@ nnoremap <F12> <C-]>
 " -------- Other --------
 " Use Tab to indent line
 nmap <tab> v>
+
+" diff mode
+"   Use > and < for take right/left.
+"   n and N for next/prev changed
+autocmd vimenter * if &diff | 
+ \ exe "nnoremap > dp" |
+ \ exe "nnoremap > dp" |
+ \ exe "nnoremap n ]c" |
+ \ exe "nnoremap <s-n> [c" |
+ \ endif
