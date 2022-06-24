@@ -1,5 +1,7 @@
 #!/bin/sh
 
+APP_NAME="sublime_text"
+
 die() {
   echo $1
   exit 1
@@ -10,7 +12,7 @@ die() {
 [ -z $APP_BIN ] && die "Can't found any $APP_NAME path!";
 
 # im-config : ibus use.
-exec $APP_BIN/sublime_text "$@"
+exec $APP_BIN/$APP_NAME "$@"
 
 # im-config : fcitx use.
 # Common use in Ubuntu 18.04 version before.

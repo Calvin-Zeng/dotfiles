@@ -98,3 +98,7 @@ T_Name[21]=".vimrc"
 S_Name[22]="vim/.vim"
 T_Path[22]="$HOME"
 T_Name[22]=".vim"
+
+S_Name[23]="wireshark/.config/wireshark"
+T_Path[23]="$HOME/.config"
+T_Name[23]="wireshark"
