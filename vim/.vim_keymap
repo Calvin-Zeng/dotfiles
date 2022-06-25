@@ -19,6 +19,21 @@ nnoremap <c-t><c-t> :tselect<CR>
 " nnoremap <c-t><c-b> <C-t>
 
 " Find in files
+" ripgrep
+map ,<c-f> :Rg<CR>
+map ,<c-f>e :Rge<SPACE>
+
+cabbrev Rg
+    \ Rg <C-R><C-W>
+    \ <Bar> lw
+    \ <C-Left><C-Left><Left>
+
+cabbrev Rge
+    \ Rg 
+    \ <Bar> lw
+    \ <C-Left><C-Left><Left>
+
+" vim grep
 " refer to https://vim.fandom.com/wiki/Find_in_files_within_Vim
 " %      - Current opened files.
 " *      - Current directory.
@@ -28,8 +43,8 @@ nnoremap <c-t><c-t> :tselect<CR>
 " **/*.c - Current directory recursive and only extension c files.
 "map ,<c-f><c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj ** <bar> lw"<S-Left><S-Left><Left>
 
-map ,<c-f> :lvim<CR>
-map ,<c-f>e :lvime<SPACE>
+"map ,<c-f> :lvim<CR>
+"map ,<c-f>e :lvime<SPACE>
 map ,<c-f><c-f> :lvim<SPACE>
 map ,<c-f>o :lvimo<CR>
 map ,<c-f>oe :lvimoe<SPACE>

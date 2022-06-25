@@ -3,8 +3,12 @@
 *.tar*
 *.swp
 
-# Ignore the bat autocomplete file.
+# Ignore the autocomplete files.
 bash_library/bat.bash
+bash_library/_rg
+bash_library/rg.bash
+bash_library/rg.fish
+bash_library/_rg.ps1
 
 # Ignore the Backup folder change.
 backup/*
