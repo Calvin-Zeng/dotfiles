@@ -8,6 +8,7 @@ case $- in
 esac
 
 # export CMAKE_ROOT=$HOME/cmake-3.2.2
+export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc
 
 # Manual compiled applications will put in the $HOME/local/bin directory.
 # And the other will put in the $HOME/.local/bin directory(like: python-inst).

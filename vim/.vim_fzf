@@ -3,6 +3,8 @@ set rtp+=~/.fzf
 
 nnoremap <Leader><C-p> :FZF<CR>
 nnoremap <Leader><C-h> :History:<CR>
+" Open the recent close file
+nnoremap <Leader><C-t> :Buffers<CR>
 
 command! GITDIFF call fzf#run(fzf#wrap({'source': 'git ls-files --modified'}))
 

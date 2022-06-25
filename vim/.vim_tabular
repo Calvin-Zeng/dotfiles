@@ -1,4 +1,4 @@
-autocmd VimEnter * if exists(":Tabularize") |
+autocmd vimenter * if exists(":Tabularize") |
  \ exe "nmap <Leader>a :Tabularize /" |
  \ exe "vmap <Leader>a :Tabularize /" |
  \ exe "nmap <Leader>a= :Tabularize /=<CR>" |
