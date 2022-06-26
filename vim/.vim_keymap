@@ -21,7 +21,7 @@ nnoremap <c-t><c-t> :tselect<CR>
 " Find in files
 " ripgrep
 map ,<c-f> :Rg<CR>
-map ,<c-f>e :Rge<SPACE>
+map ,<c-f><c-f> :Rge<SPACE>
 
 cabbrev Rg
     \ Rg <C-R><C-W>
@@ -44,11 +44,11 @@ cabbrev Rge
 "map ,<c-f><c-f> :execute "noautocmd lvim /" . expand("<cword>") . "/gj ** <bar> lw"<S-Left><S-Left><Left>
 
 "map ,<c-f> :lvim<CR>
-"map ,<c-f>e :lvime<SPACE>
-map ,<c-f><c-f> :lvim<SPACE>
+"map ,<c-f><c-f> :lvim<SPACE>
+map ,<c-f>e :lvime<SPACE>
 map ,<c-f>o :lvimo<CR>
-map ,<c-f>oe :lvimoe<SPACE>
 map ,<c-f><c-f>o :lvimo<SPACE>
+map ,<c-f>oe :lvimoe<SPACE>
 cabbrev lvim
     \ execute "noautocmd
     \ lvim /<C-R><C-W>/gj
@@ -92,6 +92,9 @@ map ,<c-f>p :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
 " Open the diff view
 map ,<c-f>d  :diffthis<CR>
 map ,<c-f>do :diffoff<CR>
+
+" Disable the relative number.
+map ,<c-s>r :set relativenumber!<BAR>set relativenumber?<CR>
 
 " Useful bubble text normal mapping for arrow keys.
 " http://vimcasts.org/episodes/bubbling-text/

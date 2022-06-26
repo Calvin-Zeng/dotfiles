@@ -34,6 +34,9 @@ set encoding=utf-8
 " Show line number.
 set nu
 
+" Show relative number
+set rnu 
+
 " Auto indent.
 set ai
 set autoindent

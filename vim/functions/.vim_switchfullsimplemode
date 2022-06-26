@@ -6,6 +6,7 @@ function SwitchFullSimpleMode()
         let &mouse = ""
         set nocindent
         set nonumber
+        set norelativenumber
         set wrap
         :TagbarClose
         :NERDTreeClose
@@ -15,6 +16,7 @@ function SwitchFullSimpleMode()
         let &mouse = "a"
         set cindent
         set number
+        set relativenumber
         set wrap
         :ShowMarksOn
         " set nowrap
