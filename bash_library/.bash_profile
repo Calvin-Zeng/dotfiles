@@ -9,11 +9,26 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
+# Enable the extglob option.
+shopt -s extglob
+
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=2000
 HISTFILESIZE=4000
 HISTTIMEFORMAT='%F %T '
-HISTIGNORE="history*:History*:man*:ll*:ls*:source*:uptime*:pwd:ifconfig:cd*:help*:git_*:_FZF_*:t *:.*"
+
+# refer to https://gist.github.com/Angles/3273505
+# Don't save trivial 1 to 4 character commands on the history list
+ignore+="?:??:???:????:"
+# Don't save any commands about ls.
+ignore+="l[l|ll|a|sd|f|s] *:"
+# Change permission.
+ignore+="?(s)@(000|600|644|664|700|755|777) *:"
+# Change directories path.
+ignore+="up?(s):.....:"
+# Miscellaneous.
+ignore+="@([hH]istory|man|ifconfig|[c|b]at|cd|mv|which|help|uptime|kill|tmux|git|vi|subl|tree|ctags|meld|fzf|t|source|sourcebashrc|showkey|ascii|md5sum)?( *):"
+HISTIGNORE=$ignore
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.

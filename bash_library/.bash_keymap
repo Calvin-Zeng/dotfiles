@@ -5,7 +5,6 @@
 # mappings to have up and down arrow searching through history:
 bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
-
 # Shift-Tab: auto complete bash-CLI and write-in.
 bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
