@@ -261,3 +261,17 @@ alias gpi='grep -Iinr'
 
 # If the local $HOME has personally compiled VIM, then use local build version.
 [ -f "$HOME/local/bin/vim" ] && alias vi=$HOME'/local/bin/vim'
+
+# refer to https://unix.stackexchange.com/questions/246419/open-file-with-started-vim-from-outside-in-terminal
+# vim --servername HAMBURGER # Start new session named "HAMBURGER"
+# vim --servername HAMBURGER --remote-tab `find $PWD -name BACON`
+alias viS='vi --servername ${PWD##*/}'
+
+vim_server_list() {
+    if [[ $(vi --serverlist | wc -l) -eq 1 ]]; then
+        echo "$(vi --serverlist)"
+    else
+        echo "$(vi --serverlist | fzf)"
+    fi
+}
+alias vis='vi --servername $(vim_server_list) --remote-tab'

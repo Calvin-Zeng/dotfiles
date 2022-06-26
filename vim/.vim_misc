@@ -65,13 +65,55 @@ set mouse=a
 set confirm
 
 " Show the bottom status bar
-" File path string - '%:p'
+" refer to https://www.reddit.com/r/vim/comments/pq3xwa/how_to_get_the_git_branch_in_the_statusline
+"          https://shapeshed.com/vim-statuslines/
+"          https://gist.github.com/meskarune/57b613907ebd1df67eb7bdb83c6e6641#file-vimrc-L33
+au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermfg=black ctermbg=magenta
+au InsertLeave * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
+au VimEnter * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
+au VimEnter * hi filepath cterm=none ctermbg=238 ctermfg=40
+au VimEnter * hi filetype cterm=none ctermbg=238 ctermfg=45
+au VimEnter * hi filesize cterm=none ctermbg=238 ctermfg=225
+au VimEnter * hi position cterm=none ctermbg=238 ctermfg=228
+au VimEnter * hi gitbranch cterm=none ctermbg=238 ctermfg=255
+
+" Status Line Custom
+let g:currentmode={
+    \ 'n'  : 'Normal',
+    \ 'no' : 'Normal·Operator Pending',
+    \ 'v'  : 'Visual',
+    \ 'V'  : 'V·Line',
+    \ '^V' : 'V·Block',
+    \ 's'  : 'Select',
+    \ 'S'  : 'S·Line',
+    \ '^S' : 'S·Block',
+    \ 'i'  : 'Insert',
+    \ 'R'  : 'Replace',
+    \ 'Rv' : 'V·Replace',
+    \ 'c'  : 'Command',
+    \ 'cv' : 'Vim Ex',
+    \ 'ce' : 'Ex',
+    \ 'r'  : 'Prompt',
+    \ 'rm' : 'More',
+    \ 'r?' : 'Confirm',
+    \ '!'  : 'Shell',
+    \ 't'  : 'Terminal'
+    \}
+
 set laststatus=2
-set statusline=%#filepath#[%{expand(@%)}]%#filetype#[%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]%#filesize#%{FileSize()}%{IsBinary()}%=%#position#%c,%l/%L\ [%3p%%]
-hi filepath cterm=none ctermbg=238 ctermfg=40
-hi filetype cterm=none ctermbg=238 ctermfg=45
-hi filesize cterm=none ctermbg=238 ctermfg=225
-hi position cterm=none ctermbg=238 ctermfg=228
+" File path string - '%:p'
+set statusline=%#filepath#[%{expand(@%)}]
+set statusline+=%#filetype#[%{strlen(&fenc)?&fenc:&enc},\ %{&ff},\ %{strlen(&filetype)?&filetype:'plain'}]
+set statusline+=%#filesize#%{FileSize()}
+set statusline+=%{IsBinary()}
+set statusline+=%#gitbranch#%{StatuslineGit()}
+set statusline+=%=
+set statusline+=%{Servername()}
+set statusline+=\ %#position#
+set statusline+=%c,%l/%L
+set statusline+=\ [%3p%%]
+set statusline+=%0*\ %{toupper(g:currentmode[mode()])}\  " The current mode
+
 function IsBinary()
     if (&binary == 0)
         return ""
@@ -92,3 +134,21 @@ function FileSize()
         return "[" . (bytes / 1048576) . "MB]"
     endif
 endfunction
+function! Servername()
+    return strlen(v:servername) > 0?'[ '.v:servername.' ]':''
+endfunction
+
+" Git branch information.
+function! StatuslineGit()
+    return strlen(b:git_branch) > 0?'  ~('.b:git_branch.')':''
+endfunction
+function GitBranch()
+    "return trim(system("git -C " . expand("%:h") . " branch --show-current 2>/dev/null"))
+    return trim(system("git rev-parse --abbrev-ref HEAD 2>/dev/null"))
+endfunction
+augroup Gitget
+    autocmd!
+    autocmd VimEnter * let b:git_branch = GitBranch()
+    autocmd BufRead * let b:git_branch = GitBranch()
+    autocmd BufEnter * let b:git_branch = GitBranch()
+augroup END
