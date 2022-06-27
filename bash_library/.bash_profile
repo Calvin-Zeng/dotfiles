@@ -27,7 +27,7 @@ ignore+="?(s)@(000|600|644|664|700|755|777) *:"
 # Change directories path.
 ignore+="up?(s):.....:"
 # Miscellaneous.
-ignore+="@([hH]istory|man|ifconfig|[c|b]at|cd|mv|which|help|uptime|kill|tmux|git|vi|subl|tree|ctags|meld|fzf|t|source|sourcebashrc|showkey|ascii|md5sum)?( *):"
+ignore+="@([hH]istory|man|i[fw]config|[c|b]at|cd|mv|rm|which|help|uptime|df|kill|tmux|git|vi|subl|tree|ctags|meld|fzf|t|source|sourcebashrc|showkey|ascii|md5sum)?( *):"
 HISTIGNORE=$ignore
 
 # check the window size after each command and, if necessary,

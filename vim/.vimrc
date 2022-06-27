@@ -39,7 +39,7 @@ source $HOME/dotfiles/vim/functions/.vim_switchfullsimplemode
 "   Type \mw
 " Move to the window you want to swap
 "   Type \pw
-source /home/calvin/dotfiles/vim/functions/.vim_windowswap
+source $HOME/dotfiles/vim/functions/.vim_windowswap
 " Auto save / restore the session by path
 " Then use those cmd to exit vim.
 "   :wa - save all tabs / unsaved buffers

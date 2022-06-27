@@ -25,12 +25,12 @@ map ,<c-f><c-f> :Rge<SPACE>
 
 cabbrev Rg
     \ Rg <C-R><C-W>
-    \ <Bar> lw
+    \<Bar> lw
     \ <C-Left><C-Left><Left>
 
 cabbrev Rge
-    \ Rg 
-    \ <Bar> lw
+    \ Rg
+    \<Bar> lw
     \ <C-Left><C-Left><Left>
 
 " vim grep

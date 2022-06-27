@@ -8,9 +8,10 @@
 
 --extra=+q
 
---exclude=ctags
+--exclude=.tags
 --exclude=.ctags
---exclude=TAGS
+--exclude=tags
+--exclude=ctags
 --exclude=.cvs/*
 --exclude=*/.cvs/*
 --exclude=.svn/*
