@@ -61,6 +61,7 @@ cd bootstrap_script
 ./Install_putty.sh
 ./Install_ripgrep.sh
 ./Install_smartgit.sh
+./Install_snavigator.sh
 ./Install_sublime.sh
 ./Install_vim.sh
 
