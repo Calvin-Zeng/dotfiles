@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+   <mime-type type="application/x-mswinurl">
+     <comment>Web Shortcut description</comment>
+     <generic-icon name="application-x-mswinurl"/>
+     <icon name="application-x-mswinurl"/>
+     <glob pattern="*.url"/>
+   </mime-type>
+</mime-info>
