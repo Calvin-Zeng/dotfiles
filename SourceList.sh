@@ -102,3 +102,11 @@ T_Name[22]=".vim"
 S_Name[23]="wireshark/.config/wireshark"
 T_Path[23]="$HOME/.config"
 T_Name[23]="wireshark"
+
+S_Name[24]="bash/.ripgreprc"
+T_Path[24]="$HOME"
+T_Name[24]=".ripgreprc"
+
+S_Name[25]="bash/.inputrc"
+T_Path[25]="$HOME"
+T_Name[25]=".inputrc"
