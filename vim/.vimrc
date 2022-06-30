@@ -46,6 +46,7 @@ source $HOME/dotfiles/vim/functions/.vim_windowswap
 "   :xa/:wqa - save all tabs / unsaved buffers and exit Vim
 "   :qa - exit vim (will warn if unsaved buffers exist)
 source $HOME/dotfiles/vim/functions/.vim_autosession
+source $HOME/dotfiles/vim/functions/.vim_tabline
 
 " others
 source $HOME/dotfiles/vim/.vim_keymap

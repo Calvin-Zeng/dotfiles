@@ -5,6 +5,8 @@ nnoremap <Leader><C-p> :FZF<CR>
 nnoremap <Leader><C-h> :History:<CR>
 " Open the recent close file
 nnoremap <Leader><C-t> :Buffers<CR>
+" Listing the current opened files
+nnoremap <Leader><s-t> :Windows<CR>
 
 command! GITDIFF call fzf#run(fzf#wrap({'source': 'git ls-files --modified'}))
 
