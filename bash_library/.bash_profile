@@ -20,14 +20,16 @@ HISTTIMEFORMAT='%F %T '
 # refer to https://gist.github.com/Angles/3273505
 # Don't save trivial 1 to 4 character commands on the history list
 ignore+="?:??:???:????:"
-# Don't save any commands about ls.
-ignore+="l[l|ll|a|sd|f|s] *:"
+# Don't save any commands about ls, ln.
+ignore+="l?(l|ll|a|sd|f|s|n) *:"
 # Change permission.
 ignore+="?(s)@(000|600|644|664|700|755|777) *:"
 # Change directories path.
-ignore+="up?(s):.....:"
+ignore+="up?(s)?( *):.....:"
+# Develop commands
+ignore+="@(git|vi?(s|S)|subl|ctags|meld)?( *):"
 # Miscellaneous.
-ignore+="@([hH]istory|man|i[fw]config|[c|b]at|cd|mv|rm|which|help|uptime|df|kill|tmux|git|vi|subl|tree|ctags|meld|fzf|t|source|sourcebashrc|showkey|ascii|md5sum)?( *):"
+ignore+="@([hH]istory|man|i[fw]config|[c|b]at|c[d|p]|fd|mv|rm|which|help|uptime|df|ps|kill|tmux|tree|fzf|t|source?(bashrc)|showkey|ascii|md5sum|tar|mkdir|echo|dirname)?( *):"
 HISTIGNORE=$ignore
 
 # check the window size after each command and, if necessary,
