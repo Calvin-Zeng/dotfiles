@@ -12,10 +12,11 @@ Plug 'SirVer/ultisnips'
 Plug 'jayli/vim-easycomplete'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-scripts/ShowMarks'
+Plug 'will133/vim-dirdiff'
 
 call plug#end()
 
-"Color Scheme:
+" Color Scheme
 source $HOME/dotfiles/vim/.vim_theme_Molokai
 
 let mapleader = '\'

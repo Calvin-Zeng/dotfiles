@@ -26,6 +26,15 @@ patch_file() {
   set +e
 }
 
+confirm() {
+  read -r -p "$1" answer
+  case $answer in
+      ""|[Yy]* ) return 0;;
+      [Nn]* ) return 1;;
+      * ) echo "Please answer Y or N."; return 1;;
+  esac
+}
+
 # plugin - vim-plug
 # https://github.com/junegunn/vim-plug
 download_plugin_file "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" autoload plug.vim
@@ -45,6 +54,11 @@ download_git_repo "https://github.com/jayli/vim-easycomplete.git" plugged/vim-ea
 # download_git_repo "https://github.com/honza/vim-snippets.git" plugged/vim-snippets
 download_git_repo "https://github.com/mg979/vim-visual-multi.git" plugged/vim-visual-multi
 download_git_repo "https://github.com/junegunn/fzf.vim.git" plugged/fzf.vim
+download_git_repo "https://github.com/will133/vim-dirdiff" plugged/vim-dirdiff
 
 download_git_repo "https://github.com/vim-scripts/ShowMarks.git" plugged/ShowMarks
-cd plugged/ShowMarks && patch_file ../../plugin-showMarks_ctermbg.patch
+confirm "Patch the ShowMarks color theme? ([Y]/N): "
+if [[ $? -eq 0 ]] ; then
+    cd plugged/ShowMarks
+    patch_file ../../plugin-showMarks_ctermbg.patch
+fi

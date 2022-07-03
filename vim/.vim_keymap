@@ -24,14 +24,12 @@ map ,<c-f> :Rg<CR>
 map ,<c-f><c-f> :Rge<SPACE>
 
 cabbrev Rg
-    \ Rg <C-R><C-W>
-    \<Bar> lw
-    \ <C-Left><C-Left><Left>
+    \ Rg <C-R><C-W><Bar>lw
+    \ <C-Left>
 
 cabbrev Rge
-    \ Rg
-    \<Bar> lw
-    \ <C-Left><C-Left><Left>
+    \ Rg <Bar>lw
+    \ <C-Left><BS>
 
 " vim grep
 " refer to https://vim.fandom.com/wiki/Find_in_files_within_Vim
