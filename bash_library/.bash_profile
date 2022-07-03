@@ -29,7 +29,7 @@ ignore+="up?(s)?( *):.....:"
 # Develop commands
 ignore+="@(git|vi?(s|S)|subl|ctags|meld)?( *):"
 # Miscellaneous.
-ignore+="@([hH]istory|man|i[fw]config|[c|b]at|c[d|p]|fd|mv|rm|which|help|uptime|df|ps|kill|tmux|tree|fzf|t|source?(bashrc)|showkey|ascii|md5sum|tar|mkdir|echo|dirname)?( *):"
+ignore+="@([hH]istory|man|i[fw]config|[c|b]at|c[d|p]|fd|mv|rm|which|help?(_*)|uptime|df|ps|kill|tmux|tree|fzf|t|source?(bashrc)|showkey|ascii|md5sum|tar|mkdir|echo|dirname)?( *):"
 HISTIGNORE=$ignore
 
 # check the window size after each command and, if necessary,

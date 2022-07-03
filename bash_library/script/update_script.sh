@@ -1,5 +1,10 @@
 #!/bin/bash
 
+script_path=$(readlink -f $0)
+dir_path=$(dirname $script_path)
+
+cd $dir_path
+
 # Some system will show this message below.
 # WARNING: cannot verify download.gnome.org's certificate, issued by ‘CN=R3,O=Let's Encrypt,C=US’:
 get_file() {

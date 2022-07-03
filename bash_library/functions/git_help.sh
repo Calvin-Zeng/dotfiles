@@ -171,6 +171,15 @@ echo -e $"
     ${Yellow} git pl ../x.bundle ${Color_Off}
 "
     ;;
+    submodule)
+echo -e $"
+    ${Green}Remove the submodule${Color_Off}
+        git rm <path-to-submodule>
+        rm -rf .git/modules/<path-to-submodule>
+        git config --remove-section submodule.<path-to-submodule>
+    # refer to https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule
+"
+    ;;
     *)
 echo -e $"
 ${Yellow}Get started with Git:${Color_Off}
