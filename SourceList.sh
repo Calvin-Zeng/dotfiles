@@ -110,3 +110,7 @@ T_Name[24]=".ripgreprc"
 S_Name[25]="bash/.inputrc"
 T_Path[25]="$HOME"
 T_Name[25]=".inputrc"
+
+S_Name[26]="bash/.stow-global-ignore"
+T_Path[26]="$HOME"
+T_Name[26]=".stow-global-ignore"
