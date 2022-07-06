@@ -1,0 +1,20 @@
+" refer to https://www.reddit.com/r/vim/comments/9iwr41/store_quickfix_list_as_a_file_and_load_it/
+function! s:qf_to_filename(qf) abort
+  for i in range(len(a:qf.items))
+    let d = a:qf.items[i]
+    if bufexists(d.bufnr)
+      let d.filename = fnamemodify(bufname(d.bufnr), ':p')
+    endif
+    silent! call remove(d, 'bufnr')
+    let a:qf.items[i] = d
+  endfor
+  return a:qf
+endfunction
+
+" For quick list used.
+command! -bar -nargs=1 -complete=file WriteQF call writefile([js_encode(s:qf_to_filename(getqflist({'all': 1})))], <f-args>)
+command! -bar -nargs=1 -complete=file ReadQF call setqflist([], ' ', js_decode(get(readfile(<f-args>), 0, '')))
+
+" For location list used.
+command! -bar -nargs=1 -complete=file WriteLF call writefile([js_encode(s:qf_to_filename(getloclist(1, {'all': 1})))], <f-args>)
+command! -bar -nargs=1 -complete=file ReadLF call setloclist(1, [], ' ', js_decode(get(readfile(<f-args>), 0, '')))

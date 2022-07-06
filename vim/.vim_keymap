@@ -1,7 +1,10 @@
 " -------- Ctrl --------
 " Save/restore the VIM session.
+nnoremap <Leader><C-s>l :source 
+nnoremap <Leader><C-s>s :mksession! 
+
+" Save the file
 nnoremap <Leader><C-s> :w<CR>
-nnoremap <Leader><C-r> :source 
 
 " New a empty file on tab
 nnoremap <Leader><C-n> :tabnew %<CR>
@@ -18,6 +21,12 @@ nnoremap <c-t><c-l> :ltag  <bar>lwindow<S-Left><Left>
 nnoremap <c-t><c-t> :tselect<CR>
 " nnoremap <c-t><c-b> <C-t>
 
+" Load/Write the previous search result.
+map ,<c-f>sq :WriteQF 
+map ,<c-f>sl :WriteLF 
+map ,<c-f>rq :ReadQF 
+map ,<c-f>rl :ReadLF 
+
 " Find in files
 " ripgrep
 map ,<c-f> :Rg<CR>
@@ -32,6 +41,13 @@ cabbrev Rge
     \ <C-Left><BS>
 
 " vim grep
+" quick fix    lvimgrep
+" :copen       :lopen
+" :cnext       :lnext
+" :cprev       :prev
+" :cc          :ll
+" :cf <file>   :lf <file>
+"
 " refer to https://vim.fandom.com/wiki/Find_in_files_within_Vim
 " %      - Current opened files.
 " *      - Current directory.

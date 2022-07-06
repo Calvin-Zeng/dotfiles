@@ -70,12 +70,12 @@ set confirm
 "          https://gist.github.com/meskarune/57b613907ebd1df67eb7bdb83c6e6641#file-vimrc-L33
 au InsertEnter * hi statusline guifg=black guibg=#d7afff ctermfg=black ctermbg=magenta
 au InsertLeave * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
-au VimEnter * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
-au VimEnter * hi filepath cterm=none ctermbg=238 ctermfg=40
-au VimEnter * hi filetype cterm=none ctermbg=238 ctermfg=45
-au VimEnter * hi filesize cterm=none ctermbg=238 ctermfg=225
-au VimEnter * hi position cterm=none ctermbg=238 ctermfg=228
-au VimEnter * hi gitbranch cterm=none ctermbg=238 ctermfg=255
+au VimEnter,BufRead * hi statusline guifg=black guibg=#8fbfdc ctermfg=black ctermbg=cyan
+au VimEnter,BufRead * hi filepath cterm=none ctermbg=238 ctermfg=40
+au VimEnter,BufRead * hi filetype cterm=none ctermbg=238 ctermfg=45
+au VimEnter,BufRead * hi filesize cterm=none ctermbg=238 ctermfg=225
+au VimEnter,BufRead * hi position cterm=none ctermbg=238 ctermfg=228
+au VimEnter,BufRead * hi gitbranch cterm=none ctermbg=238 ctermfg=255
 
 " Status Line Custom
 let g:currentmode={

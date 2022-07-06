@@ -18,7 +18,7 @@ let g:fzf_layout = { 'window': { 'width': 0.9, 'height': 0.9 } }
 " refer to https://github.com/junegunn/fzf.vim
 " Example: Advanced ripgrep integration
 function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -C 1 -- %s || true'
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case -- %s || true'
   let initial_command = printf(command_fmt, shellescape(a:query))
   let reload_command = printf(command_fmt, '{q}')
   let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}

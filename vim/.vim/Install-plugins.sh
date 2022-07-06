@@ -55,6 +55,7 @@ download_git_repo "https://github.com/jayli/vim-easycomplete.git" plugged/vim-ea
 download_git_repo "https://github.com/mg979/vim-visual-multi.git" plugged/vim-visual-multi
 download_git_repo "https://github.com/junegunn/fzf.vim.git" plugged/fzf.vim
 download_git_repo "https://github.com/will133/vim-dirdiff" plugged/vim-dirdiff
+download_git_repo "https://github.com/romainl/vim-qf" plugged/vim-qf
 
 download_git_repo "https://github.com/vim-scripts/ShowMarks.git" plugged/ShowMarks
 confirm "Patch the ShowMarks color theme? ([Y]/N): "

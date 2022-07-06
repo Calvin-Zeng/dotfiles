@@ -13,6 +13,7 @@ Plug 'jayli/vim-easycomplete'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'vim-scripts/ShowMarks'
 Plug 'will133/vim-dirdiff'
+Plug 'romainl/vim-qf'
 
 call plug#end()
 
@@ -48,6 +49,7 @@ source $HOME/dotfiles/vim/functions/.vim_windowswap
 "   :qa - exit vim (will warn if unsaved buffers exist)
 source $HOME/dotfiles/vim/functions/.vim_autosession
 source $HOME/dotfiles/vim/functions/.vim_tabline
+source $HOME/dotfiles/vim/functions/.vim_qf
 
 " others
 source $HOME/dotfiles/vim/.vim_keymap
