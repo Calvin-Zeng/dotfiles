@@ -275,4 +275,4 @@ vim_server_list() {
     fi
 }
 alias vis='vi --servername $(vim_server_list) --remote-tab'
-alias hotlists='eval cd $(cat $HOME/.NERDTreeBookmarks | fzf | cut -d"'" "'" -f2)'
+alias hotlists='temp=$(mktemp); cat $HOME/.NERDTreeBookmarks > $temp; cat $HOME/.config/mc/hotlist | cut -d "'" "'" -f4,6 >> $temp; sed -i "'"/^$/d"'" $temp; eval cd $(cat $temp | fzf | cut -d"'" "'" -f2); rm $temp; unset temp'

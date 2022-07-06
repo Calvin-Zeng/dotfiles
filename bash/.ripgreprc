@@ -15,6 +15,7 @@ web:*.{html,css,js}*
 --glob=!.ctags
 --glob=!tags
 --glob=!ctags
+--glob=!*.result
 
 # Set the colors.
 --colors=line:none
