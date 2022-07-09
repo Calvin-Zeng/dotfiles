@@ -21,6 +21,13 @@ nnoremap <c-t><c-l> :ltag  <bar>lwindow<S-Left><Left>
 nnoremap <c-t><c-t> :tselect<CR>
 " nnoremap <c-t><c-b> <C-t>
 
+" vim-qf - save/load list.
+map ,<c-f>s :SaveList 
+map ,<c-f>l :LoadList 
+map ,<c-f>k :Keep 
+map ,<c-f>r :Reject 
+map ,<c-f>R :Restore<CR>
+
 " Load/Write the previous search result.
 map ,<c-f>sq :WriteQF 
 map ,<c-f>sl :WriteLF 
@@ -98,7 +105,7 @@ map ,<c-f>c :let @/ = ""<CR>
 map ,<c-f>h :set hls!<BAR>set hls?<CR>
 
 " Find & Replace
-map ,<c-f>r :%s/s/re/gc
+map ,<c-f>fr :%s/s/re/gc
 
 " Find & replace and increase index
 map ,<c-f>p :let i=1 \| 2,7g/search/s//\='replace'.i/gc \| let i=i+1
@@ -136,6 +143,30 @@ nnoremap <silent> <s-w>  :tabn<CR>
 map ,<s-s><s-b> :set scb!<BAR>set scb?<CR>
 
 " -------- Function key --------
+" Sift + F1
+nnoremap [1;2P :Maps<CR> 
+" Sift + F2
+nnoremap [1;2Q :Marks<CR>
+" Sift + F3 - Not works.
+" Sift + F4
+nnoremap [1;2S :Windows<CR> 
+" Sift + F5
+nnoremap <S-F5> :GFiles?<CR>
+" Sift + F6
+nnoremap <S-F6> :Lines<CR>
+" Sift + F7
+nnoremap <S-F7> :
+" Sift + F8
+nnoremap <S-F8> :
+" Sift + F9
+nnoremap <S-F9> : 
+" Sift + F10
+nnoremap <S-F10> : 
+" Sift + F11
+nnoremap <S-F11> : 
+" Sift + F12
+nnoremap <S-F12> :RG<CR>
+
 " Insert time. Note: replace with easycomplete
 " imap <F2> <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
 
