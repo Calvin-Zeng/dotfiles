@@ -167,14 +167,24 @@ nnoremap <S-F11> :
 " Sift + F12
 nnoremap <S-F12> :RG<CR>
 
+" yank/paste select to system clipboard.
+vnoremap <F2> "+y
+nnoremap <F3> "+p
+
 " Insert time. Note: replace with easycomplete
 " imap <F2> <C-R>=strftime("%Y/%m/%d %H:%M:%S")<CR>
 
 " Execute command.
-map <F2> :r !
+" map <F2> :r !
 
 " Enable tagbar
 nmap <F8> :TagbarToggle<CR>
+
+" Next/previous tab
+inoremap <F9> <c-o>gT
+inoremap <F10> <c-o>gt
+nnoremap <F9> gT
+nnoremap <F10> gt
 
 " Navigate to definition
 nnoremap <F12> <C-]>
